@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('campagnes', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('dateDebut',"begin");
+            $table->dateTime('dateDebut');
             $table->dateTime('dateFin')->nullable();
             $table->boolean('enCours');
             $table->string('fichierCommande',100)->nullable();
