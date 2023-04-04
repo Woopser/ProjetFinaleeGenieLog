@@ -61,4 +61,21 @@ class ComptesController extends Controller
     {
         //
     }
+
+    public function createAdmin()
+    {
+        return View('comptes.createAdmin');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        try{
+            $compte = new Compte($request->all());
+            $compte = save();
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
+        return redirect()->route('comptes.index');
+    }
 }
