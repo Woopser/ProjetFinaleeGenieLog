@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nom',
+      'prenom',
+      'motDePasse',
+      'typeCompte',
+      'email'
     ];
 
     /**
@@ -32,6 +34,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getAuthPassword(){
+        return $this->motDePasse;
+    }
 
     /**
      * The attributes that should be cast.
