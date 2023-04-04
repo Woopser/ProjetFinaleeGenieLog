@@ -15,3 +15,7 @@ use App\Http\Controllers\ComptesController;
 
 Route::get('/login',
 [ComptesController::class, 'index'])->name('Comptes.index');
+
+Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->name('Comptes.createAdmin');
+
+Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
