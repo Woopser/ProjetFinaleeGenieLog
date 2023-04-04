@@ -70,12 +70,13 @@ class ComptesController extends Controller
     public function storeAdmin(Request $request)
     {
         try{
-            $compte = new Compte($request->all());
-            $compte = save();
+            //$compte = new Compte($request->all());
+            //$compte->save();
+            return redirect()->route('Comptes.index');
         }
         catch(\Throwable $e){
-            Log::debug($e);
+            //Log::debug($e);
         }
-        return redirect()->route('comptes.index');
+        
     }
 }
