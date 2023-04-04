@@ -15,3 +15,13 @@ use App\Http\Controllers\ComptesController;
 
 Route::get('/login',
 [ComptesController::class, 'index'])->name('Comptes.index');
+
+/*  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager Connection usager Connection usager*/
+Route::get('/login',
+[usagersController::class, 'showLoginForm'])->name('login');
+
+Route::POST('/login',
+[usagersController::class, 'login'])->name('login');
+
+Route::POST('/logout',
+[usagersController::class, 'logout'])->name('logout');
