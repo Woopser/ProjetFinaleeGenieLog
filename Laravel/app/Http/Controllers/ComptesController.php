@@ -11,7 +11,7 @@ class ComptesController extends Controller
      */
     public function index()
     {
-        //
+        return View('comptes.index');
     }
 
     /**
