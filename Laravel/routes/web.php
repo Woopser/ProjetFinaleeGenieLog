@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComptesController;
+use App\Http\Controllers\CampagnesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,14 @@ Route::get('/login',
 [ComptesController::class, 'index'])->name('Comptes.index');
 
 
+//Routes pour creation de campagnes
+Route::get('/campagnes/creation',
+[CampagnesController::class, 'create'])->name('Campagnes.create');
+
+Route::post('/campagne/store',
+[CampagnesController::class, 'store'])->name('campagnes.store');
+
+
 /*  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager Connection usager Connection usager*/
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('login');
 
@@ -27,4 +36,5 @@ Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
 Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->name('Comptes.createAdmin');
 
 Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
+
 
