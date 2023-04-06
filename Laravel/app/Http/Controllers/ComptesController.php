@@ -14,6 +14,11 @@ class ComptesController extends Controller
         return View('comptes.index');
     }
 
+    public function showLoginForm()
+    {
+        return View('comptes.showLoginForm');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -61,4 +66,36 @@ class ComptesController extends Controller
     {
         //
     }
+
+
+    public function login(Request $request)
+    {
+        $reussi=Auth::attempt(['email'=>$request->email,'motDePasse'=>$request->motDePasse]);
+
+        if($reussi){
+            return redirect()->route('films.index') ->with('message',"Connexion réussie");   
+        }
+            else{
+                    return redirect()->route('login')->withErrors(['Informations invalides']); 
+            }
+    }
+
+
+    public function createAdmin()
+    {
+        return View('comptes.createAdmin');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        try{
+            $compte = new Compte($request->all());
+            $compte = save();
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
+        return redirect()->route('comptes.index');
+    }
+
 }
