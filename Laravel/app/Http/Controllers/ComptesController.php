@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Compte;
 
 class ComptesController extends Controller
 {
@@ -89,13 +90,18 @@ class ComptesController extends Controller
     public function storeAdmin(Request $request)
     {
         try{
+            
+            $motDePasse = substr($request->get('nom'),0,3) . substr($request->get('prenom'),0,3);
             $compte = new Compte($request->all());
-            $compte = save();
+            $compte->motDePasse = sha1($motDePasse);
+            $compte->typeCompte = "Admin";
+            $compte->save();
+            return redirect()->route('Comptes.index');
         }
-        catch(\Throwable $e){
+        catch(Throwable $e){
             Log::debug($e);
         }
-        return redirect()->route('comptes.index');
+        
     }
 
 }
