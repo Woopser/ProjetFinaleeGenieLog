@@ -19,7 +19,7 @@ class CampagnesController extends Controller
      */
     public function create()
     {
-        //
+        return view('campagnes.create');
     }
 
     /**
@@ -27,7 +27,15 @@ class CampagnesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $campagne = new Campagne($request->all());
+            $campagne->save();
+        }
+        catch (\Throwables $e){
+            Log::debug($e);
+
+        }
+        return redirect()->route('comptes.index');
     }
 
     /**
