@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('comptes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom',100);
-            $table->string('prenom',100);
+            $table->string('nom',100)->nullable();
+            $table->string('prenom',100)->nullable();
             $table->string('motDePasse',100);
             $table->string('typeCompte',100);
             $table->string('email',100);
