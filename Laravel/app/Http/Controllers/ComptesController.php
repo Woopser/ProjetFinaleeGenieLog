@@ -14,6 +14,11 @@ class ComptesController extends Controller
         return View('comptes.index');
     }
 
+    public function showLoginForm()
+    {
+        return View('comptes.showLoginForm');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

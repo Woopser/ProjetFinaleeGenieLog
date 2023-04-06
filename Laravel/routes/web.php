@@ -17,11 +17,8 @@ Route::get('/login',
 [ComptesController::class, 'index'])->name('Comptes.index');
 
 /*  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager Connection usager Connection usager*/
-Route::get('/login',
-[ComptesController::class, 'showLoginForm'])->name('login');
+Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('login');
 
-Route::POST('/login',
-[ComptessController::class, 'login'])->name('login');
+Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 
-Route::POST('/logout',
-[ComptessController::class, 'logout'])->name('logout');
+Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
