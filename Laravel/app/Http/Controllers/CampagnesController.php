@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Campagne;
 
 class CampagnesController extends Controller
 {
@@ -35,7 +36,7 @@ class CampagnesController extends Controller
             Log::debug($e);
 
         }
-        return redirect()->route('comptes.index');
+        return redirect()->route('login');
     }
 
     /**
