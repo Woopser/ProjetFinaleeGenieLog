@@ -15,23 +15,22 @@ use App\Http\Controllers\CampagnesController;
 */
 
 
+
 //Routes pour creation de campagnes
 Route::get('/campagnes/creation',
 [CampagnesController::class, 'create'])->name('Campagnes.create');
-
 Route::post('/campagne/store',
 [CampagnesController::class, 'store'])->name('campagnes.store');
 
 
 /*  Connection Comptes*/
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('login');
-
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
-
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
 
+//Route pour la creation d'admin
 Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->name('Comptes.createAdmin');
-
+//Route pour sauvegarder les admins
 Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
 
 

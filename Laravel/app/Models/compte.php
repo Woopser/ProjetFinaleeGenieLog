@@ -9,4 +9,6 @@ class Compte extends Model
 {
     use HasFactory;
     protected $fillable = ['nom','prenom','email','motDePasse'];
+
+    
 }
