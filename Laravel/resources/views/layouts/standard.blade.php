@@ -14,12 +14,12 @@
             font-family: Modelica;
             src: url('{{ public_path('fonts\bw-modelica-lgc-bold.tff') }}');
         }
-        </style>
+    </style>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid" font-family:Modelica>
-            <img src="{{asset('img/CegeptrLogo.png/')}}" alt="Logo" width="200" height="150" class="d-inline-block align-text-top">
+            <img src="{{asset('img/CegeptrLogo.png/')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
         
-        <ul class="nav justify-content-end" style="font-size: 225%" style="color:rgb(8, 44, 115)">
+        <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
         <li class="nav-item">
           <a style="color:rgb(8, 44, 115)" class="nav-link disabled">Déconnecter</a>
         </li>
