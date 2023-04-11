@@ -1,5 +1,6 @@
-@extends('layouts.standard')
 
+@extends('layouts.standard')
+ 
 
 @section('titre', 'Création de campagne')
 @section('contenu')
@@ -18,7 +19,7 @@
         <div class="mb-3 form-group row">
             <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date de début campagne :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateDeb" name="dateDeb">
+                <input type="date" class="form-control" id="dateDeb" name="dateDebut">
             </div>
             
         </div>
@@ -34,7 +35,7 @@
         <div class="mb-3 form-group row">
             <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateFinFond">Date de fin collecte de fond :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateFinFond" name="dateFinFond">
+                <input type="date" class="form-control" id="dateRemiseFond" name="dateRemiseFond">
             </div>
             
         </div>

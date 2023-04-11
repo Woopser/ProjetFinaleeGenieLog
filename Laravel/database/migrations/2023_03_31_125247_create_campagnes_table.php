@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('campagnes', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->dateTime('dateDebut');
+            $table->dateTime('dateDebut')->default('2023-08-08');
             $table->dateTime('dateFin')->nullable();
-            $table->boolean('enCours');
-            $table->dateTime('dateDebFond')->nullable();
+            $table->boolean('enCours')->default(true);
+            $table->dateTime('dateDebFond')->nullable()->default('2023-08-10');
             $table->string('fichierCommande',100)->nullable();
-            $table->dateTime('dateRemiseFond');
+            $table->dateTime('dateRemiseFond')->default('2023-09-09');
             $table->timestamps();
         });
     }

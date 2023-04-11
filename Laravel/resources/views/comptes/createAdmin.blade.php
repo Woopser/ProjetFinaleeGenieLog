@@ -7,6 +7,8 @@
 <form class="d-flex justify-content-center" method="post" action="{{route('Comptes.storeAdmin')}}">
     @csrf
     <div class="col-6">
+
+        
         <div class="mb-3 form-group row">
             <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="prenomCompte">Prenom du professeur :</label>
             <div class="col-sm-8">
