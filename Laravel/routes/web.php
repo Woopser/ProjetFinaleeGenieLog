@@ -14,8 +14,6 @@ use App\Http\Controllers\CampagnesController;
 |
 */
 
-Route::get('/index',
-[ComptesController::class, 'index'])->name('Comptes.index');
 
 
 //Routes pour creation de campagnes
@@ -25,7 +23,7 @@ Route::post('/campagne/store',
 [CampagnesController::class, 'store'])->name('campagnes.store');
 
 
-/*  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager  Connection usager Connection usager Connection usager*/
+/*  Connection Comptes*/
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('login');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');

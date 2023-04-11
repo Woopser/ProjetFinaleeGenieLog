@@ -1,4 +1,6 @@
-
+@extends('layouts.standard')
+@section('titre', 'Connexion')
+@section('contenu')
 
 <!--debut header-->
 <!DOCTYPE html>
@@ -41,7 +43,7 @@
     
     <div class="row">
     <div class="col-xl-4 offset-xl-4 text-center">
-    <button type="submit" class="btn btn-danger text-center mb-5">se connecter</button>
+    <button type="submit" class="btn btn-danger text-center mb-5">Connexion</button>
     </div>
     </div>
    
@@ -53,3 +55,4 @@
 
 </body>
 </html>
+@endsection

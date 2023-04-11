@@ -9,7 +9,7 @@ class Campagne extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'dateDebut','dateFin','enCours','fichierCommande','dateRemiseFond'];
+    protected $fillable = ['id','nom', 'dateDebut','dateFin','enCours','dateDebFond','fichierCommande','dateRemiseFond'];
 
     public function Campagnes()
     {
