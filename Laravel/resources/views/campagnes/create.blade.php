@@ -4,21 +4,52 @@
 @section('titre', 'Création de campagne')
 @section('contenu')
 
-<form method="post" action="{{ route('campagnes.store')}}"> 
+<form method="post" action="{{ route('campagnes.store')}}" class="d-flex justify-content-center"> 
     @csrf
-    <div class="mb-3">
-        <label for="dateDeb" class="form-label">Veuillez entrez la date de debut de la campagne</label>
-        <input type="date" class="form-control" id="dateDeb">
-    </div>
+    <div class="col-6">
 
-    <div class="mb-3">
-        <label for="dateFin" class="form-label">Veuillez entrez la date de fin de la campagne</label>
-        <input type="date" class="form-control" id="dateFin">
-    </div>
+        <div class="mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="nomCamp">Nom de la campagne :</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="nomCamp" name="nom">
+            </div>
+        </div>
 
-    <div class="mb-3">
-        <label for="dateFin" class="form-label">Veuillez entrez la date de fin de collecte de fonds</label>
-        <input type="date" class="form-control" id="dateFin">
+        <div class="mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date de début campagne :</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateDeb" name="dateDeb">
+            </div>
+            
+        </div>
+    
+        <div class="mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date de début collecte de fond :</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateDebFond" name="dateDebFond">
+            </div>
+            
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateFinFond">Date de fin collecte de fond :</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateFinFond" name="dateFinFond">
+            </div>
+            
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date de fin de campagne :</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateFin" name="dateFin">
+            </div>
+            
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-danger">Créer</button>
+        </div>
     </div>
 
 </form>

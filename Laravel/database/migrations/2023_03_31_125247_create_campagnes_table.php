@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('campagnes', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
             $table->dateTime('dateDebut');
             $table->dateTime('dateFin')->nullable();
             $table->boolean('enCours');
+            $table->dateTime('dateDebFond')->nullable();
             $table->string('fichierCommande',100)->nullable();
             $table->dateTime('dateRemiseFond');
             $table->timestamps();

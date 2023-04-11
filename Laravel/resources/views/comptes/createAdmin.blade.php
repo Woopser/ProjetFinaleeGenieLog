@@ -16,14 +16,14 @@
         </div>
 
         <div class="mb-3 form-group row">
-            <label  class="col-form-label col-sm-4 textForm" for="nomCompte">Nom du professeur :</label>
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="nomCompte">Nom du professeur :</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="nomCompte" name="nom">
             </div>
         </div>
 
         <div class=" mb-3 form-group row">
-            <label  class="col-form-label col-sm-4" for="emailCompte">Email du professeur :</label>
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4" for="emailCompte">Email du professeur :</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="emailCompte"  name="email">
             </div>
