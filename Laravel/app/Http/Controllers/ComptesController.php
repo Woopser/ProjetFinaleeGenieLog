@@ -122,6 +122,8 @@ class ComptesController extends Controller
     
     public function storeClient(ComptesClientRequest $request)
     {
+    
+        
         // Sauvegarder le client dans la base de données.
         try{
             
@@ -129,7 +131,7 @@ class ComptesController extends Controller
             $compte = new Compte($request->all());
             //$compte->motDePasse=Hash::make($request->motDePasse);
             // Encrypter le mot de passe.
-            $compte->motDePasse = sha1($motDePasse);
+            $compte->motDePasse = sha1($compte->motDePasse);
             // Ajouter le type Client au compte.
             $compte->typeCompte = "Client";
             // Sauvegarder le compte.
