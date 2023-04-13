@@ -25,7 +25,7 @@ class ComptesClientRequest extends FormRequest
             'prenom' => 'required|min:3|max:100',
             'nom' => 'required|min:3|max:100',
             'email' => 'required|max:100',
-            'motDePasse' => 'required|min:6|max:100'
+            'motDePasse' => 'required|min:8|max:100'
         ];
     }
 }

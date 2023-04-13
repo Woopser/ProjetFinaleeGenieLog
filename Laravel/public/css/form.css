@@ -5,3 +5,15 @@
 label{
     color: rgb(8, 44, 115);
 }
+
+.erreur{
+
+    color: red;
+    
+    }
+
+.is-invalid {
+    border-color: red;
+    background-color: #ffe6e6;
+    color: red;
+  }
