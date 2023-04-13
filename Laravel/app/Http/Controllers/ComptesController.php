@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Compte;
 use App\Http\Requests\ComptesAdminRequest;
+use App\Http\Requests\ComptesClientRequest;
 
 class ComptesController extends Controller
 {
@@ -88,6 +89,13 @@ class ComptesController extends Controller
         return View('comptes.createAdmin');
     }
 
+   
+    public function createClient()
+    {
+        return View('comptes.createClient');
+    }
+
+   
     public function storeAdmin(ComptesAdminRequest $request)
     {
         // sauvegarde d'admins dedans la base de données
@@ -104,6 +112,32 @@ class ComptesController extends Controller
             $compte->save();
             // redirection
             return redirect()->route('Comptes.createAdmin');
+        }
+        catch(Throwable $e){
+            Log::debug($e);
+        }
+        
+    }
+
+    
+    public function storeClient(ComptesClientRequest $request)
+    {
+    
+        
+        // Sauvegarder le client dans la base de données.
+        try{
+            
+            // Prendre les données entrées dedans le form.
+            $compte = new Compte($request->all());
+            //$compte->motDePasse=Hash::make($request->motDePasse);
+            // Encrypter le mot de passe.
+            $compte->motDePasse = sha1($compte->motDePasse);
+            // Ajouter le type Client au compte.
+            $compte->typeCompte = "Client";
+            // Sauvegarder le compte.
+            $compte->save();
+            // Redirection.
+            return redirect()->route('Comptes.createClient');
         }
         catch(Throwable $e){
             Log::debug($e);

@@ -30,6 +30,10 @@
                 <input type="text" class="form-control" id="emailCompte"  name="email">
             </div>
         </div>
+
+        <label for="password"> Mot de passe</label>
+        <input type="password" class="form-control" id="password" placeholder="Mot de passe du client" name="password" value="{{ old('password')}}"><br><br>
+       
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-danger">Créer</button>
         </div>
