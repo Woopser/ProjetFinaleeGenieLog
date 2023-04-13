@@ -5,3 +5,7 @@
 label{
     color: rgb(8, 44, 115);
 }
+
+.erreur{
+    color: red;
+}
