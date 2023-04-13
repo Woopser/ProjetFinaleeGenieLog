@@ -3,6 +3,15 @@
 @section('titre', 'Creation Admin')
 
 @section('contenu')
+
+@if(isset($errors) && $errors->any())
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
+    </div>
+@endif
+
 <div class="align-items-center">
 <form class="d-flex justify-content-center" method="post" action="{{route('Comptes.storeAdmin')}}">
     @csrf
