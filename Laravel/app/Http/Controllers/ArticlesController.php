@@ -19,7 +19,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.createArticle.blade.php');
     }
 
     /**
@@ -27,7 +27,31 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $article = new Article($request->all());
+            $uploadedFile = $request->file('image');
+            $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
+            try{
+                $request->image->move(public_path('img/acteurs'), $nomFichierUnique);
+            }
+            catch(\Symfony\Component\HttpFoundation\File\Exception\FileExeption $e){
+                Log::error("Erreur lors du téléversement du fichier.", [$e]);
+            }
+            $article->image = $nomFichierUnique;
+            //$campagne = Campagne::where('enCours','=',true)->get();
+            //if(isset($campagne)){
+                //$article->campagne_id = $campagne->id;
+            //}
+            
+
+            $article->save();
+            return redirect()->route('comptes.index');
+        }
+        catch(Throwable $e){
+            Log::debug($e);
+
+        }
+        return redirect()->route('comptes.index');
     }
 
     /**
