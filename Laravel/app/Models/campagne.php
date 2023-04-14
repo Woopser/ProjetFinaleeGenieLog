@@ -13,6 +13,6 @@ class Campagne extends Model
 
     public function Campagnes()
     {
-        return $tis->belongsToMany('App\Models\Campagne');
+        return $this->belongsToMany('App\Models\Article');
     }
 }
