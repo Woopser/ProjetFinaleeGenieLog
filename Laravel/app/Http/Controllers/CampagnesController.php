@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Campagne;
+use App\Http\Requests\CampagnesRequest;
 
 class CampagnesController extends Controller
 {
@@ -26,17 +27,18 @@ class CampagnesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CampagnesRequest $request)
     {
         try{
             $campagne = new Campagne($request->all());
+            $campagne->enCours = true;
             $campagne->save();
         }
         catch (\Throwables $e){
             Log::debug($e);
 
         }
-        return redirect()->route('login');
+        //return redirect()->route('login');
     }
 
     /**
