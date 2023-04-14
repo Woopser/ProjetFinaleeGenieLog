@@ -26,9 +26,10 @@ Route::post('/campagne/store',
 
 
 /*  Connection Comptes*/
-Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('login');
+Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
+
 
 //Route pour la creation d'admin
 Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->name('Comptes.createAdmin');
