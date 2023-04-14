@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Campagne;
 
 class ArticlesController extends Controller
 {
@@ -19,7 +21,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.createArticle.blade.php');
+        return view('articles.createArticle');
     }
 
     /**
@@ -30,20 +32,23 @@ class ArticlesController extends Controller
         try{
             $article = new Article($request->all());
             $uploadedFile = $request->file('image');
-            $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
-            try{
-                $request->image->move(public_path('img/acteurs'), $nomFichierUnique);
-            }
-            catch(\Symfony\Component\HttpFoundation\File\Exception\FileExeption $e){
-                Log::error("Erreur lors du téléversement du fichier.", [$e]);
-            }
+            if(isset( $uploadedFile)){
+                $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
+                try{
+                    $request->image->move(public_path('img/acteurs'), $nomFichierUnique);
+                }
+                catch(\Symfony\Component\HttpFoundation\File\Exception\FileExeption $e){
+                    Log::error("Erreur lors du téléversement du fichier.", [$e]);
+                }
             $article->image = $nomFichierUnique;
-            //$campagne = Campagne::where('enCours','=',true)->get();
-            //if(isset($campagne)){
-                //$article->campagne_id = $campagne->id;
+            }
+            $campagnes = Campagne::where('enCours','=',true)->get();
+            //if(isset($campagnes)){
+                //foreach($campagnes as $campagne){
+                    //$article->campagne_id = $campagnes->campagnes();
+                //}
             //}
             
-
             $article->save();
             return redirect()->route('comptes.index');
         }

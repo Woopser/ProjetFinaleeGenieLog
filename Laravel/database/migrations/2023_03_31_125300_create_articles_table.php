@@ -16,7 +16,7 @@ return new class extends Migration
             $table->float('prix')->nullable();
             $table->foreignId('campagne_id')->constrained();
             $table->string('nom',100);
-            $table->string('image',255);
+            $table->string('image',255)->nullable();
             $table->timestamps();
         });
     }

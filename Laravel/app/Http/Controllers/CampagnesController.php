@@ -38,7 +38,7 @@ class CampagnesController extends Controller
             Log::debug($e);
 
         }
-        //return redirect()->route('login');
+        return redirect()->route('login');
     }
 
     /**
