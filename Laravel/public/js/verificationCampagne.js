@@ -14,10 +14,10 @@ function verifierNom()
         err.textContent = "Le nom de la camapgne doit etre au minimum 5 lettres.";
         nom.classList.add('is-invalid');
     }
-    if(long > 5){
+    if(long > 50){
         let err = document.getElementById("nomErr"); 
         err.textContent = "";
-        nom.classList.remove('is-invalid');
+        nom.classList.add('is-invalid');
     }
 
  }

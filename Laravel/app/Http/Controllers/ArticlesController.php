@@ -13,7 +13,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('articles.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class ArticlesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('articles.show', compact('article'));
     }
 
     /**

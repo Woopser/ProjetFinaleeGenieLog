@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComptesController;
 use App\Http\Controllers\CampagnesController;
 use App\Http\Controllers\ArticlesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,9 @@ Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->n
 //Route pour ajouter un article
 Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
+
+//Juste la route pour la page principale
+Route::get('articles/index',[ArticlesController::class, 'show'])->name('Articles.index');
+
+//route show articles
+Route::get('articles/{article}/', [ArticlesController::class, 'show'])->name('articles.show');
