@@ -37,3 +37,7 @@ Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->nam
 Route::get('/comptes/creationClient',[ComptesController::class, 'createClient'])->name('Comptes.createClient');
 //Route pour sauvegarder le client
 Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
+
+//Route pour ajouter un article
+Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
+Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
