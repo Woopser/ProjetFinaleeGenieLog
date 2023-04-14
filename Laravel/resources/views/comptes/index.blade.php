@@ -2,6 +2,18 @@
 @section('titre', 'Connexion')
 @section('contenu')
 
+@if(isset($errors) && $errors->any())
+
+    <div class="alert alert-danger">
+
+        @foreach($errors->all() as $error)
+
+            <p>{{$error}}</p>
+
+        @endforeach
+
+    </div>
+@endif
 
 <div class="location border-warning col-xl-12" id="home" >
     <div class="box my-5 col-xl-12">
