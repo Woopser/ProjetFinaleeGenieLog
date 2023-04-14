@@ -4,6 +4,18 @@
 
 @section('titre', 'Création de campagne')
 @section('contenu')
+@if(isset($errors) && $errors->any())
+
+    <div class="alert alert-danger">
+
+        @foreach($errors->all() as $error)
+
+            <p>{{$error}}</p>
+
+        @endforeach
+
+    </div>
+@endif
 
 <form method="post" action="{{ route('campagnes.store')}}" class="d-flex justify-content-center"> 
     @csrf
@@ -39,6 +51,7 @@
             <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateFinFond">Date fin collecte :</label>
             <div class="col-sm-8">
                 <input type="date" class="form-control" id="dateRemiseFond" name="dateRemiseFond">
+                <p id="dateFinFondErr" class="erreur"></p>
             </div>
             
         </div>
@@ -47,6 +60,7 @@
             <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date fin de campagne :</label>
             <div class="col-sm-8">
                 <input type="date" class="form-control" id="dateFin" name="dateFin">
+                <p id="dateFinErr" class="erreur"></p>
             </div>
             
         </div>
