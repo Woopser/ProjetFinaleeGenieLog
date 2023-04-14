@@ -3,6 +3,21 @@
 @section('titre', 'Creation Client')
 
 @section('contenu')
+
+
+@if(isset($errors) && $errors->any())
+
+    <div class="alert alert-danger">
+
+        @foreach($errors->all() as $error)
+
+            <p>{{$error}}</p>
+
+        @endforeach
+
+    </div>
+@endif
+
 <div class="align-items-center">
 <form class="d-flex justify-content-center" method="post" action="{{route('Comptes.storeClient')}}">
     @csrf
@@ -35,8 +50,8 @@
         </div>
 
         <div class=" mb-3 form-group row">
+            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4" for="password"> Mot de passe</label>
             <div class="col-sm-8">
-             <label for="password"> Mot de passe</label>
              <input type="password" class="form-control" id="motDePasse" placeholder="Mot de passe du client" name="motDePasse" value="{{ old('motDePasse')}}"><br>
                 <p class="erreur" id="errorMotDePasse"></p>
             </div>
