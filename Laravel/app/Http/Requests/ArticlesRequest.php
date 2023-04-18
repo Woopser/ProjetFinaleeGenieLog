@@ -11,7 +11,7 @@ class ArticlesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class ArticlesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'prix' => 'regex:/^([0-9]+,?[0-9]?[0-9]?)?$/|max:100',
+            'nom' => 'required|max:100',
+            'image' => 'image|mimes:png,jpeg,jpg,gif|max:4096',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'prix.regex' => 'Le prix ne peut être que des chiffres.',
+            'prix.max' => 'Vous ne pouvez pas rentrer plus de 100 caractères.',
+            'nom.required' => 'Le nom est requis.',
+            'nom.max' => 'Vous ne pouvez pas rentrez plus de 100 caractères.',
+            'image.image' => 'Vous devez donner une image.',
+            'image.mimes' => 'Vous ne respectez pas les formats accepté sois : png,jpeg,jpg,gif.',
+            'image.max' => 'l\'image ne doit pas faire plus que 4096 Mo.',
         ];
     }
 }
