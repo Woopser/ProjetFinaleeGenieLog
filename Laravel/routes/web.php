@@ -50,3 +50,4 @@ Route::get('articles/index',[ArticlesController::class, 'show'])->name('Articles
 
 //route show articles
 Route::get('articles/{article}/', [ArticlesController::class, 'show'])->name('articles.show');
+

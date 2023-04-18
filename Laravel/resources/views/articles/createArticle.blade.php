@@ -47,5 +47,5 @@
 
 
 
-
+<script src="{{ asset('js/validationArticle.js') }}"></script>
 @endsection
