@@ -20,6 +20,13 @@ label{
   }
 
 nav{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     /*border-bottom: black solid 3px;*/
+}
+.card{
+    margin: 3%;
+}
+
+#navLien{
+    text-decoration:none;
 }
