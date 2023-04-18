@@ -13,7 +13,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        $articles = Article::all();
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -62,7 +63,7 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Article $article)
     {
         return view('articles.show', compact('article'));
     }
