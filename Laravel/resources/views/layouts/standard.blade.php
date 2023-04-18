@@ -24,6 +24,7 @@
         <a href="{{ route('Comptes.createAdmin')}}">Créer un compte Admin</a>
         <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
+        <a href="{{ route('Comptes.edit')}}">Modifier un client</a>
 
         
             <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">

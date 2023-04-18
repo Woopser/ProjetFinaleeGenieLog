@@ -51,25 +51,58 @@ class ComptesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comptes = Comptes::findOrFail($id);
+        return View('Comptes.modifierClient', compact('comptes'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+             $comptes = Comptes::findOrFail($id);
+               $comptes->prenom = $request->prenom;
+              $comptes->nom = $request->nom;
+              $comptes->email = $request->email;
+              $comptes->motDePasse = $request->motDePasse;
+             
+                $comptes->save();
+               return redirect()->route('comptes.index')->with('message', "Modification du client " . $comptes->nom . "réussi!");
+               }
+                catch(\Throwable $e){
+              
+              Log::debug($e);
+                return redirect()->route('comptes.index')->withErrors(['la modification n\'a pas fonctionné']);
+               }
+                return redirect()->route('comptes.index'); 
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $comptes=Comptes::findOrFail($id);
+            $comptes->delete();
+
+            return redirect()->route('comptes.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('comptes.index')->withErrors(['la suppression n\'a pas fonctionné']);
+        }
+        return redirect()->route('comptes.index');
     }
 
+
+    
 
     public function login(Request $request)
     {
