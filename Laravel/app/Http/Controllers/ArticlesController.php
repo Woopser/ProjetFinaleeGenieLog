@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Campagne;
+use App\Models\Couleur;
+use App\Models\Dimension;
 use App\Http\Requests\ArticlesRequest;
 
 class ArticlesController extends Controller
@@ -14,8 +16,24 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('articles.index', compact('articles'));
+        
+        $campagnes = Campagne::where('enCours','=',true)->get();
+        if(isset($campagnes)){
+            foreach($campagnes as $campagne){
+                $articles = Article::where('campagne_id','=',$campagne->id)->get();
+                if(isset($articles)){
+                    foreach($articles as $article){
+
+                    }
+                }
+            }
+        }
+        
+        
+
+
+
+        return view('articles.index', compact('articles','campagnes'));
     }
 
     /**
