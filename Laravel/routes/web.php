@@ -46,10 +46,8 @@ Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Arti
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
 
 //Juste la route pour la page principale
-Route::get('articles/index',[ArticlesController::class, 'show'])->name('Articles.index');
 
-//route show articles
-Route::get('articles/{article}/', [ArticlesController::class, 'show'])->name('articles.show');
+
 
 // Modifier un comptes client
 //Route::get('/comptes/{id}/edit',[ComptesController::class, 'update'])->name('comptes.update');
@@ -62,3 +60,6 @@ Route::get('articles/{article}/', [ArticlesController::class, 'show'])->name('ar
 //Afficher les admins
 Route::get('/comptes/showAdmin' ,
 [ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+=======
+Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
+

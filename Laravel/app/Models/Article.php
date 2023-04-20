@@ -11,7 +11,11 @@ class Article extends Model
 
     protected $fillable = ['id','nom','prix','campagne_id','image'];
 
-    public function campagnes(){
-        return $this->hasMany('App\Article');
+    public function dimensions(){
+        return $this->belongsToMany('App\Models\Dimension');
+    }
+
+    public function couleurs(){
+        return $this->belongsToMany('App\Models\Couleur');
     }
 }
