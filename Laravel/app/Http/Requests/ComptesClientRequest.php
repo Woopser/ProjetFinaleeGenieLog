@@ -33,12 +33,12 @@ class ComptesClientRequest extends FormRequest
         return[
             'prenom.required' => 'Votre prenom est requis.',  
             'prenom.min' => 'Votre prenom doit avoir un minimum de 3 caractères',  
-            'prenom.max' => 'Votre prenom doit avoir un maximum de 30 caractères ',
+            'prenom.max' => 'Votre prenom doit avoir un maximum de 20 caractères ',
             'prenom.regex' => "Votre prenom doit contenir entre 3 et 20 caractères et pas d'accents",
 
             'nom.required' => 'Votre nom est requis.',  
             'nom.min' => 'Votre nom doit avoir un minimum de 3 caractères',  
-            'nom.max' => 'Votre nom doit avoir un maximum de 30 caractères ',
+            'nom.max' => 'Votre nom doit avoir un maximum de 20 caractères ',
             'nom.regex' => "Votre nom doit contenir entre 3 et 20 caractères et pas d'accents",
     
             'email.required' => 'Votre adresse courriel est requis.',  

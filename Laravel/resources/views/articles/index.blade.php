@@ -4,12 +4,11 @@
 @section('titre', 'Accueil')
 @section('contenu')
 
-
-<h1 style="text-align: center">Nom de campagne ici</h1>
+@foreach($campagnes as $campagne)
+<h1 style="text-align: center">{{$campagne->nom}}</h1>
+@endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
-
-
     <div class="card" style="width: 18rem">
         @if($article->image !=NULL)
         <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top" alt="Image non-disponible"/>
