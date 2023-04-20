@@ -9,6 +9,7 @@
 @endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
+  <form>
     <div class="card" style="width: 18rem">
         @if($article->image !=NULL)
         <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top" alt="Image non-disponible"/>
@@ -18,9 +19,25 @@
         <div class="card-body">
           <h5 class="card-title">{{$article->nom}}</h5>
           <p class="card-text">{{$article->prix}}$</p>
-          <a href="#!" class="btn btn-primary">Ajouter au panier</a>
+            <select class="form-select">
+              @foreach($couleurs as $couleur)
+                @foreach($couleur->couleurs as $coul)
+                  <option style="background-color: #{{$coul->codeRGB}}; color: white;" class="dropdown-item">{{$coul->nom}}</option>
+                @endforeach
+              @endforeach
+            </select>
+            <select class="form-select">
+              @foreach($dimensions as $dimension)
+                @foreach($dimension->dimensions as $dimens)
+                  <option class="dropdown-item">{{$dimens->dimension}}</option>
+                @endforeach
+              @endforeach
+            </select>
+            <!--Pour plus tard, mettre un select pour la quantité-->
+            <button type="submit" class="btn btn-primary">Ajouter au panier</button>
         </div>
       </div>
+  </form>
 @endforeach
 </div>
 
