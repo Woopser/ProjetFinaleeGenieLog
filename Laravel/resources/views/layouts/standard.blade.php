@@ -22,10 +22,12 @@
             <a href="{{ route('comptes.index')}}">Connexion</a>
          <a href="{{ route('Comptes.createClient')}}">Créer un compte client</a>
         <a href="{{ route('Comptes.createAdmin')}}">Créer un compte Admin</a>
+        <a href="{{ route('Comptes.showAdmin')}}">Afficher Admin</a>
         <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
-        <a href="{{ route('Comptes.edit')}}">Modifier un client</a>
-
+       <!-- 
+        <a href="">Modifier un client</a>
+       -->
         
             <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
             <li class="nav-item">

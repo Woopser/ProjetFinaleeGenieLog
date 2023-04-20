@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Compte;
 use App\Http\Requests\ComptesAdminRequest;
@@ -41,17 +42,25 @@ class ComptesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
+    //public function show(string $id)
+    //{
         //
+   // }
+
+
+    public function showAdmin()
+    {
+        $comptes = Compte::where('typeCompte','=', 'Admin')->get();
+        return View('Comptes.showAdmin', compact('comptes'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $comptes = Comptes::findOrFail($id);
+        $comptes = Compte::findOrFail($id);
         return View('Comptes.modifierClient', compact('comptes'));
     }
 
@@ -89,7 +98,7 @@ class ComptesController extends Controller
     public function destroy(string $id)
     {
         try{
-            $comptes=Comptes::findOrFail($id);
+            $comptes=Compte::findOrFail($id);
             $comptes->delete();
 
             return redirect()->route('comptes.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
@@ -102,7 +111,7 @@ class ComptesController extends Controller
     }
 
 
-    
+
 
     public function login(Request $request)
     {
