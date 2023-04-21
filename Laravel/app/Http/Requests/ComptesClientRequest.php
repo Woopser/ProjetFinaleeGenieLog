@@ -22,8 +22,8 @@ class ComptesClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'prenom' => 'required|min:3|max:100|regex:/^[a-zA-ZÀ-ÿ]$/',
-            'nom' => 'required|min:3|max:100|regex:/^[a-zA-ZÀ-ÿ]$/',
+            'prenom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
+            'nom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
             'email' => 'required|max:100',
             'motDePasse' => 'required|min:8|max:100|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/'
         ];
@@ -42,7 +42,7 @@ class ComptesClientRequest extends FormRequest
             'nom.regex' => "Votre nom doit contenir entre 3 et 20 caractères et pas d'accents",
     
             'email.required' => 'Votre adresse courriel est requis.',  
-            'email.max' => 'Votre adresse courriel doit avoir un maximum de 20 caractères', 
+            'email.max' => 'Votre adresse courriel doit avoir un maximum de 100 caractères', 
 
             'motDePasse.required' => 'Votre mot de passe est requis.',  
             'motDePasse.min' => 'Votre mot de passe doit avoir un minimum de 8 caractères',  
