@@ -36,6 +36,28 @@
                     <p id="errorImage" class="erreur"></p>
                 </div>
             </div>
+            <div class="mb-3 form-group row">
+                <div class="col-6">
+                    @foreach($couleurs as $couleur)
+                    <div style="background-color: #{{$couleur->codeRGB}} " class="form-check">
+                        <label style="color: white" class="form-check-label" for="flexCheckDefault">
+                            {{$couleur->nom}}
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="{{$couleur->id}}" id="couleur" name="nomC">
+                    </div>
+                    @endforeach
+                </div>
+                <div class="col-6">
+                    @foreach($dimensions as $dimension)
+                    <div  class="form-check">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{$dimension->dimension}}
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="{{$dimension->id}}" id="couleur" name="dimension">
+                    </div>
+                    @endforeach
+                </div>
+            </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-danger">Créer</button>
             </div>
