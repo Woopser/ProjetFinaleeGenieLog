@@ -37,13 +37,20 @@
                 </div>
             </div>
             <div class="mb-3 form-group row">
+                <label class="col-form-label col-sm-4 textForm" for="nb_maxArticle">Nombre d'article maximun par personne :</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nb_max" name="nb_max" value="{{ old('nb_max')}}">
+                    <p id="errorNbMax" class="erreur"></p>
+                </div>
+            </div>
+            <div class="mb-3 form-group row">
                 <div class="col-6">
                     @foreach($couleurs as $couleur)
                     <div style="background-color: #{{$couleur->codeRGB}} " class="form-check">
                         <label style="color: white" class="form-check-label" for="flexCheckDefault">
                             {{$couleur->nom}}
                         </label>
-                        <input class="form-check-input" type="checkbox" value="{{$couleur->id}}" id="couleur" name="nomC">
+                        <input class="form-check-input" type="checkbox" value="{{$couleur->id}}" id="couleur" name="{{$couleur->codeRGB}}">
                     </div>
                     @endforeach
                 </div>
@@ -53,7 +60,7 @@
                         <label class="form-check-label" for="flexCheckDefault">
                             {{$dimension->dimension}}
                         </label>
-                        <input class="form-check-input" type="checkbox" value="{{$dimension->id}}" id="couleur" name="dimension">
+                        <input class="form-check-input" type="checkbox" value="{{$dimension->id}}" id="couleur" name="{{$dimension->dimension}}">
                     </div>
                     @endforeach
                 </div>

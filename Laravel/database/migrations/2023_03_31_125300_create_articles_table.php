@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('campagne_id')->constrained();
             $table->string('nom',100);
             $table->string('image',255)->nullable();
-            $table->int('nb_max');
+            $table->float('nb_max');
             $table->timestamps();
         });
     }

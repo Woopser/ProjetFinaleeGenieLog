@@ -14,25 +14,25 @@ class DimensionSeeder extends Seeder
     {
         DB::table('dimensions')->insert([
             [
-                'dimension' => 'Très petit'
+                'dimension' => 'XS'
             ],
             [
-                'dimension' => 'Petit'
+                'dimension' => 'S'
             ],
             [
-                'dimension' => 'Moyen'
+                'dimension' => 'M'
             ],
             [
-                'dimension' => 'Grand'
+                'dimension' => 'L'
             ],
             [
-                'dimension' => 'Très grand'
+                'dimension' => 'XL'
             ],
             [
-                'dimension' => 'Très très grand'
+                'dimension' => 'XLL'
             ],
             [
-                'dimension' => 'Ne s\'applique pas'
+                'dimension' => 'N/A'
             ]
         ]);
     }
