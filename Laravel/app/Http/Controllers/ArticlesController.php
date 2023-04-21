@@ -23,7 +23,8 @@ class ArticlesController extends Controller
                 $articles = Article::where('campagne_id','=',$campagne->id)->get();
                 if(isset($articles)){
                     foreach($articles as $article){
-
+                        $couleurs = Article::with('couleurs')->get();
+                        $dimensions = Article::with('dimensions')->get();
                     }
                 }
             }
@@ -33,7 +34,7 @@ class ArticlesController extends Controller
 
 
 
-        return view('articles.index', compact('articles','campagnes'));
+        return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
     }
 
     /**
