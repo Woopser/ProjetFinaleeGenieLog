@@ -62,7 +62,5 @@
 <span class="text-danger">{{ $message }}</span>
 @enderror
 
-<script src="{{ asset('js/validationClient.js') }}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\ComptesClientRequest')!!}
 
 @endsection
