@@ -23,7 +23,9 @@ Route::get('/campagnes/creation',
 [CampagnesController::class, 'create'])->name('Campagnes.create');
 Route::post('/campagne/store',
 [CampagnesController::class, 'store'])->name('campagnes.store');
-
+//route pour page 404
+Route::get('campagne/notfound',
+[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
 
 /*  Connection Comptes*/
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');

@@ -29,12 +29,13 @@ class ArticlesController extends Controller
                 }
             }
         }
-        
-        
-
-
-
-        return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
+        if(isset($campagne,$article)){
+             return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
+        }
+        else{
+            return view('Campagnes.noCampagne');
+        }
+       
     }
 
     /**
@@ -58,7 +59,7 @@ class ArticlesController extends Controller
         $validatedDataArticle = $requestArticle->validate();
         try{
             $article = new Article();
-            $article->nom = $validatedDataArticle('nom')
+            $article->nom = $validatedDataArticle('nom');
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
