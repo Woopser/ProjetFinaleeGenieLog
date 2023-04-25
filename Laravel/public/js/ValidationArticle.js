@@ -1,5 +1,7 @@
 let targetNom = document.getElementById('nom');
 let targetPrix = document.getElementById('prix');
+let targetNb_max = document.getElementById('nb_max');
+let targetBouton = document.getElementById('bouton');
 //Vérification nom
 targetNom.addEventListener('input', function(){
     let targetError = document.getElementById('errorNom');
@@ -32,5 +34,18 @@ targetPrix.addEventListener('input', function(){
     else{
         targetError.textContent = "";
         targetPrix.classList.remove("is-invalid");
+    }
+});
+//Vérification quantité
+targetNb_max.addEventListener('input', function(){
+    let targetError = document.getElementById('errorNbMax');
+    
+    if(targetNb_max.value.length >= 3){
+        targetError.textContent = "La quantité maximun ne peux pas dépasser 100";
+        targetNb_max.classList.add("is-invalid");
+    }
+    else{
+        targetError.textContent = "";
+        targetNb_max.classList.remove("is-invalid");
     }
 });

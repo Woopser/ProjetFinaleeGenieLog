@@ -3,7 +3,7 @@ let targetPrenom;
 targetPrenom = document.getElementById('prenomCompte');
 targetPrenom.addEventListener('input', function(){
     let targetError = document.getElementById('errorPrenom');
-    let re = /^[a-zA-ZÀ-ÿ]+$/;
+    let re = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
     let match = re.test(targetPrenom.value);
     if(targetPrenom.value.length == 0){
         targetError.textContent = "Rentrez un prenom";
@@ -18,7 +18,7 @@ targetPrenom.addEventListener('input', function(){
         targetPrenom.classList.add('is-invalid');
     }
     else if(!match){
-        targetError.textContent = "Le prenom ne peut être composé que de lettres et accents";
+        targetError.textContent = "Erreur caractère pas accepter";
         targetPrenom.classList.add('is-invalid');
     }
     else if(targetPrenom.value.length >= 3){
@@ -31,7 +31,7 @@ let targetNom;
 targetNom = document.getElementById('nomCompte');
 targetNom.addEventListener('input', function(){
     let targetError = document.getElementById('errorNom');
-    let re = /^[a-zA-ZÀ-ÿ]+$/;
+    let re = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
     let match = re.test(targetNom.value);
     if(targetNom.value.length == 0){
         targetError.textContent = "Rentrez un nom";
@@ -46,7 +46,7 @@ targetNom.addEventListener('input', function(){
         targetNom.classList.add('is-invalid');
     }
     else if(!match){
-        targetError.textContent = "Le nom ne peut être composé que de lettres et accents";
+        targetError.textContent = "Erreur caractère pas accepter";
         targetNom.classList.add('is-invalid');
     }
     else if(targetNom.value.length >= 3){
@@ -59,7 +59,7 @@ let targetEmail;
 targetEmail = document.getElementById('emailCompte');
 targetEmail.addEventListener('input', function(){
     let targetError = document.getElementById('errorEmail');
-    let re = /^([a-zA-Z]+\.)+[a-zA-Z]+\.[0-9]{2}@cegeptr\.qc\.ca$/;
+    let re = /^([a-zA-ZÀ-ÿ]+\.)+[a-zA-ZÀ-ÿ]+\.[0-9]{2}@cegeptr\.qc\.ca$/;
     let match = re.test(targetEmail.value);
     if(targetEmail.value.length == 0){
         targetError.textContent = "Rentrez un email du cegep";

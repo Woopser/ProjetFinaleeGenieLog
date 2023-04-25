@@ -8,7 +8,6 @@ use App\Models\Campagne;
 use App\Models\Couleur;
 use App\Models\Dimension;
 use App\Http\Requests\ArticlesRequest;
-use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Log;
 
 class ArticlesController extends Controller
@@ -55,7 +54,7 @@ class ArticlesController extends Controller
      */
    
 
-    public function store(ArticleRequest $request)
+    public function store(ArticlesRequest $request)
     {
         
         try{
@@ -65,7 +64,7 @@ class ArticlesController extends Controller
             $article->prix = $request->prix;
             $article->nb_max = $request->nb_max;
             
-
+            
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
