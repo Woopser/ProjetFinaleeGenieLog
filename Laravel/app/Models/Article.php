@@ -9,7 +9,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','nom','prix','campagne_id','image'];
+    protected $fillable = ['id','nom','prix','campagne_id','image','nb_max'];
 
     public function dimensions(){
         return $this->belongsToMany('App\Models\Dimension');

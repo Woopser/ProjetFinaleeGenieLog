@@ -26,8 +26,15 @@
         <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
 
+
         <a href="{{ route('Comptes.modifierClient')}}">Modifier client</a>
        
+
+
+        <a href="{{ route('Articles.index')}}">Page d'achat</a>
+       <!-- 
+        <a href="">Modifier un client</a>
+       -->
 
 
         

@@ -27,7 +27,30 @@ class CommandesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+
+            $commandes = new Commande($request->all());
+            $currentDate = date('Y-m-d');
+
+            $count = 0;
+            $commandos = Commande::where('compte_id', '=', 'INSERRER LA VARIABLDE DE SESSION ICI')->where('article_id','=',$commandes->article_id)->get();
+            
+            foreach($commandos as $commando)
+                {
+                    if(isset($commandos))
+                    {
+                        $count += $count;
+                    }   
+                }
+
+            $articles = Article::where('article_id','=',$commandes->article_id)->first();
+            //LA IL FAUT LE FOREACH ET LE ISSET DE $ARTICLES POOUR ALLER CHERCHER LE NB_MAX POUR POUVOIR VOIR SI LE GARS DEPASSE 
+            
+
+        }
+        catch(Throwable $e){
+            Log::debug($e);
+        }
     }
 
     /**

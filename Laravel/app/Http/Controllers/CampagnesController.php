@@ -17,6 +17,14 @@ class CampagnesController extends Controller
     }
 
     /**
+     * campagne pas trouver
+     */
+    public function showNotfound()
+    {
+        return view('campagne.noCampagne');
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

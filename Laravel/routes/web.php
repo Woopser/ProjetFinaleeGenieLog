@@ -23,7 +23,9 @@ Route::get('/campagnes/creation',
 [CampagnesController::class, 'create'])->name('Campagnes.create');
 Route::post('/campagne/store',
 [CampagnesController::class, 'store'])->name('campagnes.store');
-
+//route pour page 404
+Route::get('campagne/notfound',
+[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
 
 /*  Connection Comptes*/
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
@@ -44,8 +46,12 @@ Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->n
 //Route pour ajouter un article
 Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
+Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
 
 //Juste la route pour la page principale
+
+
+
 
 
 
@@ -68,6 +74,6 @@ Route::delete('/comptes/{id}',
 //Afficher les admins
 Route::get('/comptes/showAdmin' ,
 [ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
-=======
+
 Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
 

@@ -23,17 +23,19 @@ class ArticlesController extends Controller
                 $articles = Article::where('campagne_id','=',$campagne->id)->get();
                 if(isset($articles)){
                     foreach($articles as $article){
-
+                        $couleurs = Article::with('couleurs')->get();
+                        $dimensions = Article::with('dimensions')->get();
                     }
                 }
             }
         }
-        
-        
-
-
-
-        return view('articles.index', compact('articles','campagnes'));
+        if(isset($campagne,$article)){
+             return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
+        }
+        else{
+            return view('Campagnes.noCampagne');
+        }
+       
     }
 
     /**
@@ -41,16 +43,23 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.createArticle');
+        $couleurs = Couleur::all();
+        $dimensions = Dimension::all();
+        return view('articles.createArticle', compact('couleurs','dimensions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ArticlesRequest $request)
+   
+
+    public function store(Request $request)
     {
+        $requestArticle = new ArticlesRequest();
+        $validatedDataArticle = $requestArticle->validate();
         try{
-            $article = new Article($request->all());
+            $article = new Article();
+            $article->nom = $validatedDataArticle('nom');
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
@@ -62,12 +71,9 @@ class ArticlesController extends Controller
                 }
             $article->image = $nomFichierUnique;
             }
-            $campagnes = Campagne::where('enCours','=',true)->get();
+            $campagnes = Campagne::where('enCours','=',true)->first();
             if(isset($campagnes)){
-                foreach($campagnes as $campagne){
-                    $article->campagne_id = $campagne->id;
-                }
-                
+                $article->campagne_id = $campagne->id;
             }
             
             $article->save();
@@ -80,6 +86,14 @@ class ArticlesController extends Controller
         return redirect()->route('comptes.index');
     }
 
+     public function superStore(Request $request){
+        $requestArticle = new ArticlesRequest();
+        $validatedDataArticle = $requestArticle->validate();
+        $requestArticle->nom = $request->nom;
+        $requestArticle->image = $request->image;
+        $request->prix = $request->prix;
+        //store($requestArticle);
+    }
     /**
      * Display the specified resource.
      */
