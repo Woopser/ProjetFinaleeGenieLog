@@ -53,11 +53,11 @@ Route::get('articles/{article}/', [ArticlesController::class, 'show'])->name('ar
 
 
 // Modifier un comptes client
-Route::get('/comptes/{id}/update',
-[ComptesController::class, 'update'])->name('Comptes.update');
+Route::get('/comptes/{id}/edit',
+[ComptesController::class, 'edit'])->name('Comptes.edit');
 
-Route::get('/comptes/{id}/modifierClient/' ,
-[ComptesController::class, 'edit'])->name('Comptes.modifierClient');
+Route::POST('/comptes/{id}/modifierClient/' ,
+[ComptesController::class, 'update'])->name('Comptes.modifierClient');
 
 
 
