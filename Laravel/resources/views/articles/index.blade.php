@@ -9,7 +9,7 @@
 @endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
-  <form method="POST" action="{{route('commandes.store')}}">
+  <form method="POST">
     @csrf
     <div class="card" style="width: 18rem">
         @if($article->image !=NULL)
@@ -23,19 +23,15 @@
 
             <label for="couleur_id">Couleur: </label>
             <select class="form-select" name="couleur_id">
-              @foreach($couleurs as $couleur)
-                @foreach($couleur->couleurs as $coul)
-                  <option style="background-color: #{{$coul->codeRGB}}; color: white;" value="{{$coul->id}}" class="dropdown-item">{{$coul->nom}}</option>
-                @endforeach
+              @foreach($article->couleurs as $couleur)
+                <option style="background-color: #{{$couleur->codeRGB}}; color: white;" value="{{$couleur->id}}" class="dropdown-item">{{$couleur->nom}}</option>
               @endforeach
             </select>
 
             <label for="dimension_id">Dimension: </label>
             <select class="form-select" name="dimension_id">
-              @foreach($dimensions as $dimension)
-                @foreach($dimension->dimensions as $dimens)
+                @foreach($article->dimensions as $dimens)
                   <option class="dropdown-item" value="{{$dimens->id}}">{{$dimens->dimension}}</option>
-                @endforeach
               @endforeach
             </select>
 

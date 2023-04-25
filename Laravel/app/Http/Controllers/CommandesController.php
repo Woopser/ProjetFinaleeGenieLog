@@ -27,7 +27,7 @@ class CommandesController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        /*try{
 
             $commandes = new Commande($request->all());
             $currentDate = date('Y-m-d');
@@ -50,7 +50,7 @@ class CommandesController extends Controller
         }
         catch(Throwable $e){
             Log::debug($e);
-        }
+        }*/
     }
 
     /**
