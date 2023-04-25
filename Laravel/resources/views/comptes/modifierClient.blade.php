@@ -9,7 +9,7 @@
 
 
 <div class="align-items-center">
-<form class="d-flex justify-content-center" method="post" action="{{route('Comptes.update', [$comptes->id])}}">
+<form class="d-flex justify-content-center" method="post" action="{{route('Comptes.modifierClient', [$comptes->id])}}">
     @csrf
     <div class="col-6">
 
@@ -62,7 +62,5 @@
 <span class="text-danger">{{ $message }}</span>
 @enderror
 
-<script src="{{ asset('js/validationClient.js') }}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\ComptesClientRequest')!!}
 
 @endsection
