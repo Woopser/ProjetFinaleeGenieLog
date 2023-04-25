@@ -19,7 +19,7 @@ targetNom.addEventListener('input', function(){
 //Vérification prix
 targetPrix.addEventListener('input', function(){
     let targetError = document.getElementById('errorPrix');
-    let re = /^([0-9]+,?[0-9]?[0-9]?)?$/;
+    let re = /^([0-9]+\.?[0-9]?[0-9]?)?$/;
     let match = re.test(targetPrix.value);
     if(!match){
         targetError.textContent = "Respectez le format de dollar soit : 00.00";
