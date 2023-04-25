@@ -58,7 +58,7 @@ class CouleurSeeder extends Seeder
             ],
             [
                 'nom' => 'Dark Heather',
-                'codeRGB' => '352620'
+                'codeRGB' => '5C6278'
             ],
             [
                 'nom' => 'Forest Green',

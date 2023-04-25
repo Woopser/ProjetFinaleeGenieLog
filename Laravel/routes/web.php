@@ -50,13 +50,26 @@ Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->na
 
 //Juste la route pour la page principale
 
-// Modifier un comptes client
-//Route::get('/comptes/{id}/edit',[ComptesController::class, 'update'])->name('comptes.update');
 
-//Route::get('/comptes/{id}/modifierClient/' ,[ComptesController::class, 'edit'])->name('Comptes.edit');
+
+
+
+
+
+// Modifier un comptes client
+Route::get('/comptes/{id}/edit',
+[ComptesController::class, 'edit'])->name('Comptes.edit');
+
+Route::POST('/comptes/{id}/modifierClient/' ,
+[ComptesController::class, 'update'])->name('Comptes.modifierClient');
+
+
+
+
 
 //Supprimer un client
-//Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
+Route::delete('/comptes/{id}',
+[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
 //Afficher les admins
 Route::get('/comptes/showAdmin' ,

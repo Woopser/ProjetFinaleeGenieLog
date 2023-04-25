@@ -8,6 +8,7 @@ use App\Models\Campagne;
 use App\Models\Couleur;
 use App\Models\Dimension;
 use App\Http\Requests\ArticlesRequest;
+use Illuminate\Support\Facades\Log;
 
 class ArticlesController extends Controller
 {
@@ -29,13 +30,13 @@ class ArticlesController extends Controller
                 }
             }
         }
+
         if(isset($campagne,$article)){
              return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
         }
         else{
             return view('Campagnes.noCampagne');
         }
-       
     }
 
     /**
@@ -55,11 +56,23 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        $requestArticle = new ArticlesRequest();
-        $validatedDataArticle = $requestArticle->validate();
+        
+        $validatedDataArticle = $request->validate([
+            'prix' => 'regex:/^([0-9]+.?[0-9]?[0-9]?)?$/|max:100',
+            'nom' => 'required|max:100',
+            'image' => 'image|mimes:png,jpeg,jpg,gif|max:4096',
+            'nb_max' => 'required|min:1|max:2',
+        ]);
         try{
+            // validation
             $article = new Article();
-            $article->nom = $validatedDataArticle('nom');
+
+            $article->nom = $validatedDataArticle['nom'];
+            $article->prix = $validatedDataArticle['prix'];
+            $validatedDataArticle['image'];
+            $article->nb_max = $validatedDataArticle['nb_max'];
+            //s'occupe de l'image
+
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
@@ -71,12 +84,41 @@ class ArticlesController extends Controller
                 }
             $article->image = $nomFichierUnique;
             }
-            $campagnes = Campagne::where('enCours','=',true)->first();
-            if(isset($campagnes)){
+            //prendre le numero de campagne
+            $campagne = Campagne::where('enCours','=',true)->first();
+            if(isset($campagne)){
                 $article->campagne_id = $campagne->id;
             }
-            
             $article->save();
+            
+            //couleur management
+            $couleurs = Couleur::all();
+            foreach($couleurs as $couleur){
+                Log::debug($request->get($couleur->codeRGB));
+                if($request->get($couleur->codeRGB) !== null){
+                    if($article->couleurs->contains($couleur->id)){
+                        Log::debug("La relation existe déjà");
+                    }
+                    else{
+                        $article->couleurs()->attach($couleur->id);
+                        $article->save();
+                    }
+                }
+            }
+            //Dimension management
+            $dimensions = Dimension::all();
+            foreach($dimensions as $dimension){
+                Log::debug($request->get($dimension->dimension));
+                if($request->get($dimension->dimension) !== null){
+                    if($article->dimensions->contains($dimension->id)){
+                        Log::debug("La relation existe déjà");
+                    }
+                    else{
+                        $article->dimensions()->attach($dimension->id);
+                        $article->save();
+                    }
+                }
+            }
             return redirect()->route('comptes.index');
         }
         catch(Throwable $e){
@@ -86,14 +128,6 @@ class ArticlesController extends Controller
         return redirect()->route('comptes.index');
     }
 
-     public function superStore(Request $request){
-        $requestArticle = new ArticlesRequest();
-        $validatedDataArticle = $requestArticle->validate();
-        $requestArticle->nom = $request->nom;
-        $requestArticle->image = $request->image;
-        $request->prix = $request->prix;
-        //store($requestArticle);
-    }
     /**
      * Display the specified resource.
      */
