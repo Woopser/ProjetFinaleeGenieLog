@@ -30,7 +30,13 @@ class ArticlesController extends Controller
                 }
             }
         }
-            return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
+
+        if(isset($campagne,$article)){
+             return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
+        }
+        else{
+            return view('Campagnes.noCampagne');
+        }
     }
 
     /**
@@ -60,11 +66,13 @@ class ArticlesController extends Controller
         try{
             // validation
             $article = new Article();
+
             $article->nom = $validatedDataArticle['nom'];
             $article->prix = $validatedDataArticle['prix'];
             $validatedDataArticle['image'];
             $article->nb_max = $validatedDataArticle['nb_max'];
             //s'occupe de l'image
+
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();

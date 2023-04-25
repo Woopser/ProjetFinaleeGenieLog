@@ -69,16 +69,16 @@ class ComptesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ComptesClientRequest $request,  $id)
     {
         try{
              $comptes = Comptes::findOrFail($id);
-               $comptes->prenom = $request->prenom;
-              $comptes->nom = $request->nom;
-              $comptes->email = $request->email;
-              $comptes->motDePasse = $request->motDePasse;
+               //$comptes->prenom = $request->prenom;
+              //$comptes->nom = $request->nom;
+              //$comptes->email = $request->email;
+              //$comptes->motDePasse = $request->motDePasse;
              
-                $comptes->save();
+                //$comptes->save();
                return redirect()->route('comptes.index')->with('message', "Modification du client " . $comptes->nom . "réussi!");
                }
                 catch(\Throwable $e){
@@ -86,7 +86,7 @@ class ComptesController extends Controller
               Log::debug($e);
                 return redirect()->route('comptes.index')->withErrors(['la modification n\'a pas fonctionné']);
                }
-                return redirect()->route('comptes.index'); 
+                //return redirect()->route('comptes.index'); 
     }
 
 
