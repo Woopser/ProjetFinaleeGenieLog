@@ -8,10 +8,10 @@ function verifierNom()
             
     
     let long = nom.value.length;
-    if(long < 5)
+    if(long > 50)
     {
         let err = document.getElementById("nomErr"); 
-        err.textContent = "Le nom de la camapgne doit etre au minimum 5 lettres.";
+        err.textContent = "Le nom de la campagne doit etre au maximum 50 lettres.";
         nom.classList.add('is-invalid');
     }
     if(long > 50){

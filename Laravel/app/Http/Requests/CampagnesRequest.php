@@ -22,7 +22,7 @@ class CampagnesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => 'required|min:5|max:50',
+            'nom' => 'required|max:50',
             'dateDebut' => 'required|date|after_or_equal:today',
             'dateDebFond' => 'required|date|after:today|after_or_equal:dateDebut',
             'dateRemiseFond' => 'required|date|after:today|after:dateDebut|after:dateDebFond',
@@ -33,7 +33,6 @@ class CampagnesRequest extends FormRequest
     public function messages(){
         return[
         'nom.required' => 'Le nom est requis.',
-        'nom.min' => 'Le nom doit être composé d\'au moins 5 caractères.',
         'nom.max' => 'Le nom ne doit pas dépasser 50 caractères.',
         'dateDebut.required' => 'La date de début est requise.',
         'dateDebut.date' => 'La date de début doit être une date valide.',

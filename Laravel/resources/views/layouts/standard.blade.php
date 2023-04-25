@@ -17,7 +17,7 @@
     </style>
     <nav class="navbar bg-body-tertiary" style="margin-bottom: 3%">
         <div class="container-fluid" font-family:Modelica >
-            <img src="{{asset('img/CegeptrLogo.png/')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
+            <img src="{{asset('img/logoInfo.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
         
             <a href="{{ route('comptes.index')}}">Connexion</a>
          <a href="{{ route('Comptes.createClient')}}">Créer un compte client</a>
@@ -25,8 +25,11 @@
         <a href="{{ route('Comptes.showAdmin')}}">Afficher Admin</a>
         <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
+
         <a href="{{ route('Comptes.modifierClient')}}">Modifier client</a>
        
+
+
         
             <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
             <li class="nav-item">

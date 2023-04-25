@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Campagne;
+use App\Models\Couleur;
+use App\Models\Dimension;
+use App\Http\Requests\ArticlesRequest;
 
 class ArticlesController extends Controller
 {
@@ -13,7 +16,24 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        
+        $campagnes = Campagne::where('enCours','=',true)->get();
+        if(isset($campagnes)){
+            foreach($campagnes as $campagne){
+                $articles = Article::where('campagne_id','=',$campagne->id)->get();
+                if(isset($articles)){
+                    foreach($articles as $article){
+
+                    }
+                }
+            }
+        }
+        
+        
+
+
+
+        return view('articles.index', compact('articles','campagnes'));
     }
 
     /**
@@ -27,7 +47,7 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
         try{
             $article = new Article($request->all());
@@ -35,7 +55,7 @@ class ArticlesController extends Controller
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
                 try{
-                    $request->image->move(public_path('img/acteurs'), $nomFichierUnique);
+                    $request->image->move(public_path('img/articles'), $nomFichierUnique);
                 }
                 catch(\Symfony\Component\HttpFoundation\File\Exception\FileExeption $e){
                     Log::error("Erreur lors du téléversement du fichier.", [$e]);
@@ -43,11 +63,12 @@ class ArticlesController extends Controller
             $article->image = $nomFichierUnique;
             }
             $campagnes = Campagne::where('enCours','=',true)->get();
-            //if(isset($campagnes)){
-                //foreach($campagnes as $campagne){
-                    //$article->campagne_id = $campagnes->campagnes();
-                //}
-            //}
+            if(isset($campagnes)){
+                foreach($campagnes as $campagne){
+                    $article->campagne_id = $campagne->id;
+                }
+                
+            }
             
             $article->save();
             return redirect()->route('comptes.index');
@@ -62,7 +83,7 @@ class ArticlesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Article $article)
     {
         return view('articles.show', compact('article'));
     }
