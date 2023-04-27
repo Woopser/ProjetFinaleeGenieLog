@@ -52,9 +52,11 @@ Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->na
 //Juste la route pour la page principale
 
 
+//Supprimer un client
+Route::delete('/comptes/{id}',
+[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
-
-
+Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
 
 
 // Modifier un comptes client
@@ -68,9 +70,6 @@ Route::POST('/comptes/{id}/modifierClient/' ,
 
 
 
-//Supprimer un client
-Route::delete('/comptes/{id}',
-[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
 //Afficher les admins
 Route::get('/comptes/showAdmin' ,

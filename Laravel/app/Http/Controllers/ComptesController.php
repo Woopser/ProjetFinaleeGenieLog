@@ -18,10 +18,22 @@ class ComptesController extends Controller
         return View('comptes.index');
     }
 
+
+
     public function showLoginForm()
     {
         return View('comptes.showLoginForm');
     }
+
+    public function pageClient()
+    {
+        $comptes = Compte::where('typeCompte','=', 'Client')->get();
+        return View('Comptes.pageClient', compact('comptes'));
+    }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
