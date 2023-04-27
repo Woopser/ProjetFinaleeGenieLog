@@ -17,7 +17,6 @@ use App\Http\Controllers\ArticlesController;
 */
 
 
-
 //Routes pour creation de campagnes
 Route::get('/campagnes/creation',
 [CampagnesController::class, 'create'])->name('Campagnes.create');
@@ -54,27 +53,24 @@ Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->na
 
 
 
-
-
-
 // Modifier un comptes client
-Route::get('/comptes/{id}/edit',
-[ComptesController::class, 'edit'])->name('Comptes.edit');
+Route::get('/comptes/{id}/edit',[ComptesController::class, 'edit'])->name('Comptes.edit');
 
-Route::POST('/comptes/{id}/modifierClient/' ,
-[ComptesController::class, 'update'])->name('Comptes.modifierClient');
-
-
-
+Route::POST('/comptes/{id}/modifierClient/' ,[ComptesController::class, 'update'])->name('Comptes.modifierClient');
 
 
 //Supprimer un client
-Route::delete('/comptes/{id}',
-[ComptesController::class, 'destroy'])->name('comptes.destroy');
+Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
 //Afficher les admins
-Route::get('/comptes/showAdmin' ,
-[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
 
 Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
 
+
+//les routes de login/logout
+Route::get('login',[ComptesController::class, 'showLoginForm'])->name('login');
+
+Route::post('login',[ComptesController::class, 'login'])->name('comptes.login');
+
+Route::post('logout',[ComptesController::class, 'logout'])->name('logout');

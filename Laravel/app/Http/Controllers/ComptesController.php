@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Compte;
 use App\Http\Requests\ComptesAdminRequest;
 use App\Http\Requests\ComptesClientRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ComptesController extends Controller
 {
@@ -115,10 +116,12 @@ class ComptesController extends Controller
 
     public function login(Request $request)
     {
-        $reussi=Auth::attempt(['email'=>$request->email,'motDePasse'=>$request->motDePasse]);
+        $reussi = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
 
         if($reussi){
-            return redirect()->route('films.index') ->with('message',"Connexion réussie");   
+            
+            Log::debug(Auth::user()->typeCompte);
+            return redirect()->route('Articles.index') ->with('message',"Connexion réussie");   
         }
             else{
                     return redirect()->route('login')->withErrors(['Informations invalides']); 
@@ -143,11 +146,12 @@ class ComptesController extends Controller
         // sauvegarde d'admins dedans la base de données
         try{
             // création d'un mot de passe temporaire a partir ddes trois premières lettres du prenom nom et 123
-            $motDePasse = substr($request->get('nom'),0,3) . substr($request->get('prenom'),0,3 . "123");
+            $password = substr($request->get('nom'),0,3) . substr($request->get('prenom'),0,3) . '123';
+            Log::debug($password);
             // prend toute les données rentrez dedans le form
             $compte = new Compte($request->all());
             // cryption du mot de passe
-            $compte->motDePasse = sha1($motDePasse);
+            $compte->password = Hash::make($password);
             // ajout de type admin
             $compte->typeCompte = "Admin";
             // sauvegarde
@@ -173,7 +177,7 @@ class ComptesController extends Controller
             $compte = new Compte($request->all());
             //$compte->motDePasse=Hash::make($request->motDePasse);
             // Encrypter le mot de passe.
-            $compte->motDePasse = sha1($compte->motDePasse);
+            $compte->password = Hash::make($compte->password);
             // Ajouter le type Client au compte.
             $compte->typeCompte = "Client";
             // Sauvegarder le compte.
