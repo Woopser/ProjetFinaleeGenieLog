@@ -14,7 +14,8 @@ class CouleursController extends Controller
      */
     public function index()
     {
-        //
+        $couleurs = Couleur::all();
+        return view('couleurs.inde', compact('article'));
     }
 
     /**
