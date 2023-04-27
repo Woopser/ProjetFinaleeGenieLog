@@ -22,16 +22,13 @@ class ArticlesController extends Controller
         if(isset($campagnes)){
             foreach($campagnes as $campagne){
                 $articles = Article::where('campagne_id','=',$campagne->id)->get();
-                if(isset($articles)){
-                    foreach($articles as $article){
-                        $couleurs = Article::with('couleurs')->get();
-                        $dimensions = Article::with('dimensions')->get();
-                    }
-                }
+                
             }
         }
+        $dimensions = Dimension::all();
+        $couleurs = Couleur::all();
 
-        if(isset($campagne,$article)){
+        if(isset($campagne)){
              return view('articles.index', compact('articles','campagnes','couleurs','dimensions'));
         }
         else{

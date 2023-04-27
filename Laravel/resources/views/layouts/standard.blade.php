@@ -27,7 +27,6 @@
         <a href="{{ route('Articles.create')}}">Créer un article</a>
 
 
-        <a href="{{ route('Comptes.modifierClient')}}">Modifier client</a>
        
 
 
