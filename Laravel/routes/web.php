@@ -66,6 +66,8 @@ Route::get('/couleurs/create',[CouleursController::class, 'create'])->name('Coul
 Route::POST('/couleurs/store',[CouleursController::class, 'store'])->name('Couleurs.store');
 //Route index couleur
 Route::get('/couleurs/index',[CouleursController::class, 'index'])->name('Couleurs.index');
+//Route destroy colours
+//Route::destroy('/Couleur/destroy/{id}',[CouleursController::class, 'destroy'])->name('Couleurs.destroy');
 //==================================================================================================================
 //Dimension
 //Route créer une dimension
