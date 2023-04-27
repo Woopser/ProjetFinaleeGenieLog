@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComptesController;
 use App\Http\Controllers\CampagnesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CouleursController;
+use App\Http\Controllers\DimensionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,10 @@ use App\Http\Controllers\ArticlesController;
 
 
 //Routes pour creation de campagnes
-Route::get('/campagnes/creation',
-[CampagnesController::class, 'create'])->name('Campagnes.create');
-Route::post('/campagne/store',
-[CampagnesController::class, 'store'])->name('campagnes.store');
+Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
+Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
 //route pour page 404
-Route::get('campagne/notfound',
-[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
+Route::get('campagne/notfound',[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
 
 /*  Connection Comptes*/
 Route::get('/',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
@@ -49,32 +48,25 @@ Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Arti
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
 Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
 
-//Juste la route pour la page principale
-
-
-
-
-
-
-
 // Modifier un comptes client
-Route::get('/comptes/{id}/edit',
-[ComptesController::class, 'edit'])->name('Comptes.edit');
-
-Route::POST('/comptes/{id}/modifierClient/' ,
-[ComptesController::class, 'update'])->name('Comptes.modifierClient');
-
-
-
-
+Route::get('/comptes/{id}/edit',[ComptesController::class, 'edit'])->name('Comptes.edit');
+Route::POST('/comptes/{id}/modifierClient/' ,[ComptesController::class, 'update'])->name('Comptes.modifierClient');
 
 //Supprimer un client
-Route::delete('/comptes/{id}',
-[ComptesController::class, 'destroy'])->name('comptes.destroy');
-
+Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
 //Afficher les admins
-Route::get('/comptes/showAdmin' ,
-[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
-
+Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+// Page principal (achats)
 Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
-
+//==================================================================================================================
+//Couleur
+//Route créer une couleur
+Route::get('/couleurs/create',[CouleursController::class, 'create'])->name('Couleurs.create');
+//Route pour la sauvegarde d'une couleur
+Route::POST('/couleurs/store',[CouleursController::class, 'store'])->name('Couleurs.store');
+//==================================================================================================================
+//Dimension
+//Route créer une dimension
+Route::get('/dimensions/create',[DimensionsController::class, 'create'])->name('Dimensions.create');
+//Route pour la sauvegarde d'une couleur
+Route::POST('/dimensions/store',[DimensionsController::class, 'store'])->name('Dimensions.store');

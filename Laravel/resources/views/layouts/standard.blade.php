@@ -21,21 +21,18 @@
         
             <a href="{{ route('comptes.index')}}">Connexion</a>
          <a href="{{ route('Comptes.createClient')}}">Créer un compte client</a>
-        <a href="{{ route('Comptes.createAdmin')}}">Créer un compte Admin</a>
-        <a href="{{ route('Comptes.showAdmin')}}">Afficher Admin</a>
-        <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
+        <a href="{{ route('Comptes.createAdmin')}}">Créer un compte admin</a>
+        <a href="{{ route('Comptes.showAdmin')}}">Afficher admin</a>
+        <a href="{{ route('Campagnes.create')}}">Créer une campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
-
-       
-
-
+        <a href="{{ route('Couleurs.create') }}">Créer une couleur</a>
+        <a href="{{ route('Dimensions.create') }}">Créer une dimension</a>
         <a href="{{ route('Articles.index')}}">Page d'achat</a>
+
        <!-- 
         <a href="">Modifier un client</a>
        -->
 
-
-        
             <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
             <li class="nav-item">
           <a style="color:rgb(8, 44, 115)" class="nav-link disabled">Déconnecter</a>

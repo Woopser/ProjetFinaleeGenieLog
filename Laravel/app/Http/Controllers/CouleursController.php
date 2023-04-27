@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Couleur;
+use App\Http\Requests\CouleursRequest;
+use Illuminate\Support\Facades\Log;
 
 class CouleursController extends Controller
 {
@@ -19,15 +22,17 @@ class CouleursController extends Controller
      */
     public function create()
     {
-        //
+        return view('couleurs.createCouleur');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CouleursRequest $request)
     {
-        //
+        $couleur = new Couleur($request->all());
+        $couleur->save();
+        return redirect()->route('Articles.index');
     }
 
     /**
