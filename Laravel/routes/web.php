@@ -64,6 +64,8 @@ Route::get('articles/index',[ArticlesController::class, 'index'])->name('Article
 Route::get('/couleurs/create',[CouleursController::class, 'create'])->name('Couleurs.create');
 //Route pour la sauvegarde d'une couleur
 Route::POST('/couleurs/store',[CouleursController::class, 'store'])->name('Couleurs.store');
+//Route index couleur
+Route::get('/couleurs/index',[CouleursController::class, 'index'])->name('Couleurs.index');
 //==================================================================================================================
 //Dimension
 //Route créer une dimension
