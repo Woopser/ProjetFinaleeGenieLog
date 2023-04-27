@@ -37,7 +37,7 @@
         <input type="email" class="form-control" id="email" placeholder="Email de l'usager" name="email" value="{{ old('email')}}"><br><br>
 
         <label for="motDePasse"> Password</label>
-        <input type="motDePasse" class="form-control" id="motDePasse" placeholder="Mot de passe de l'usager" name="motDePasse" value="{{ old('motDePasse')}}"><br><br>
+        <input type="password" class="form-control" id="password" placeholder="Mot de passe de l'usager" name="password" value="{{ old('password')}}"><br><br>
 
     </div>
     

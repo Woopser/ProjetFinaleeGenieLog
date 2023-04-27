@@ -19,7 +19,6 @@ use App\Http\Controllers\DimensionsController;
 */
 
 
-
 //Routes pour creation de campagnes
 Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
 Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
@@ -47,6 +46,13 @@ Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->n
 Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
 Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
+
+//les routes de login/logout
+Route::get('login',[ComptesController::class, 'showLoginForm'])->name('login');
+
+Route::post('login',[ComptesController::class, 'login'])->name('comptes.login');
+
+Route::post('logout',[ComptesController::class, 'logout'])->name('logout');
 
 // Modifier un comptes client
 Route::get('/comptes/{id}/edit',[ComptesController::class, 'edit'])->name('Comptes.edit');
