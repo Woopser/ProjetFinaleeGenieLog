@@ -56,11 +56,12 @@ Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->na
 Route::delete('/comptes/{id}',
 [ComptesController::class, 'destroy'])->name('comptes.destroy');
 
+
 Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
 
 
 // Modifier un comptes client
-Route::get('/comptes/{id}/edit',
+Route::get('/comptes/edit/{id}',
 [ComptesController::class, 'edit'])->name('Comptes.edit');
 
 Route::POST('/comptes/{id}/modifierClient/' ,

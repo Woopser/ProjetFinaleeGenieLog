@@ -31,10 +31,6 @@ class ComptesController extends Controller
         return View('Comptes.pageClient', compact('comptes'));
     }
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
