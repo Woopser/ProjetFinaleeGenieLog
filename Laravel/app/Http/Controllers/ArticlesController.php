@@ -108,13 +108,13 @@ class ArticlesController extends Controller
                     }
                 }
             }
-            return redirect()->route('comptes.index');
+            return redirect()->route('articles.index');
         }
         catch(Throwable $e){
             Log::debug($e);
 
         }
-        return redirect()->route('comptes.index');
+        return redirect()->route('articles.index');
     }
 
     /**
