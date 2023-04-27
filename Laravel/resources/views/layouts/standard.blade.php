@@ -26,7 +26,6 @@
         <a href="{{ route('Campagnes.create')}}">Créer une Campagne</a>
         <a href="{{ route('Articles.create')}}">Créer un article</a>
 
-
        
 
 

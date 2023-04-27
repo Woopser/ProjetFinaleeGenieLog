@@ -28,6 +28,7 @@ Route::get('campagne/notfound',
 [CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
 
 /*  Connection Comptes*/
+Route::get('/',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');

@@ -1,6 +1,6 @@
 @extends('layouts.standard')
 
-@section('titre', 'Creation Admin')
+@section('titre', 'Creation Article')
 
 @section('contenu')
 
@@ -11,8 +11,43 @@
         @endforeach
     </div>
 @endif
+
+<script type="text/javascript">
+    function ValidateForm(){
+        var c = document.getElementsByTagName('input');
+        let verificationCouleur = false;
+        let verificationDimension = false;
+        for(var i = 0; i<c.length;i++){
+            if(c[i].type=='checkbox'){
+                if(c[i].checked){
+                    if(c[i].value=="couleur"){
+                        verificationCouleur = true;
+                    }
+                    if(c[i].value=="dimension"){
+                        verificationDimension = true;
+                    }
+                }
+            }
+        }
+        if(verificationCouleur == true && verificationDimension == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    function Validate(){
+        if(!ValidateForm()){
+            alert("Tu dois cocher une couleur(s) et une dimension(s)");
+            return false;
+        }
+    }
+    
+</script>
+
 <div class="align-items-center">
-    <form class="d-flex justify-content-center" method="post" action="{{route('Article.store')}}" enctype="multipart/form-data">
+    <form id="form" class="d-flex justify-content-center" method="post" action="{{route('Article.store')}}" enctype="multipart/form-data" onsubmit="return Validate();">
         @csrf
         <div class="col-6">
             <div class="mb-3 form-group row">
@@ -25,7 +60,7 @@
             <div class="mb-3 form-group row">
                 <label class="col-form-label col-sm-4 textForm" for="prixArticle">Prix :</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="prix" name="prix" value="{{ old('prix')}}">
+                    <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix')}}">
                     <p id="errorPrix" class="erreur"></p>
                 </div>
             </div>
@@ -39,7 +74,7 @@
             <div class="mb-3 form-group row">
                 <label class="col-form-label col-sm-4 textForm" for="nb_maxArticle">Nombre d'article maximun par personne :</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="nb_max" name="nb_max" value="{{ old('nb_max')}}">
+                    <input type="number" class="form-control" id="nb_max" name="nb_max" value="{{ old('nb_max')}}">
                     <p id="errorNbMax" class="erreur"></p>
                 </div>
             </div>
@@ -50,7 +85,7 @@
                         <label style="color: white" class="form-check-label" for="flexCheckDefault">
                             {{$couleur->nom}}
                         </label>
-                        <input class="form-check-input" type="checkbox" value="{{$couleur->id}}" id="couleur" name="{{$couleur->codeRGB}}">
+                        <input class="form-check-input" type="checkbox" value="couleur" id="couleur . {{$couleur->id}}" name="{{$couleur->codeRGB}}" >
                     </div>
                     @endforeach
                 </div>
@@ -60,13 +95,13 @@
                         <label class="form-check-label" for="flexCheckDefault">
                             {{$dimension->dimension}}
                         </label>
-                        <input class="form-check-input" type="checkbox" value="{{$dimension->id}}" id="couleur" name="{{$dimension->dimension}}">
+                        <input class="form-check-input dimension" type="checkbox" value="dimension" id="dimension"  name="{{$dimension->dimension}}">
                     </div>
                     @endforeach
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-danger">Créer</button>
+                <button type="submit" id="bouton" class="btn btn-danger">Créer</button>
             </div>
         </div>
     </form>
@@ -77,4 +112,5 @@
 
 
 <script src="{{ asset('js/validationArticle.js') }}"></script>
+
 @endsection

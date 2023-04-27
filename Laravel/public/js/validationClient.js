@@ -4,7 +4,7 @@
     
 
     nomInput.addEventListener('input', function(){
-        let nomRegex = /^[a-zA-ZÀ-ÿ]$/;
+        let nomRegex = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
         let nom = nomInput.value.trim();
         let isValidNomClient = nomRegex.test(nom);
         if (nom.length < 3 || nom.length > 100) {
@@ -20,7 +20,7 @@
     let prenomInput = document.getElementById('prenomClient');
     let errorPrenom = document.getElementById('errorPrenom');
     prenomInput.addEventListener('input', function(){
-        let prenomRegex = /^[a-zA-ZÀ-ÿ]$/;
+        let prenomRegex = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
         let prenom = prenomInput.value.trim();
         let isValidPrenomClient = prenomRegex.test(prenom);
         if (prenom.length < 3 || prenom.length > 100) {
