@@ -33,57 +33,65 @@ class CommandesController extends Controller
     public function store(Request $request)
     {
         try{
-
-            $commandes = new Commande($request->all());
-            $currentDate = date('Y-m-d');
-
-            $count = 0;
-            Log::debug($commandes->article_id);
-            $commandos = Commande::where('compte_id', '=', Auth::id())->where('article_id','=',$commandes->article_id)->get();
-            
-            if(isset($commandos)){
-                foreach($commandos as $commando)
-                {
-                    Log::debug('dans le foreach');
-                    $count = $count +1;
-                }
-            }
-            
-                Log::debug($count);
-
-            $articles = Article::where('id','=',$commandes->article_id)->get();
-            Log::debug($articles);
-            if(isset($articles))
+            if(Auth::id() == null)
             {
-                foreach($articles as $article)
-                {
-                    Log::debug($request->nb_max);
-                    if($count >= $article->nb_max)
-                    {
-                        //Cofde pour si ya trop d'article 
-                    }
-                    else
-                    {
-                        Log::debug('ici');
-                        for($i = 0; $i < $request->nb_max; $i++)
-                        {
-                        $commandes2 = new Commande();
-                        $currentDate = date('Y-m-d');
-                        $commandes2->article_id = $request->article_id;
-                        $commandes2->couleur_id = $request->couleur_id;
-                        $commandes2->dimension_id = $request->dimension_id;
-                        $commandes2->compte_id = Auth::id();
-                        $commandes2->compte_id_modification = Auth::id();
-                        $commandes2->dateCommande = $currentDate;
-                        $commandes2->statu = 'Commandé';
-                        $commandes2->save();
-                        $count++;
-                        }
-                        
+                return view('Comptes.showLoginForm'); 
+            }
+            else 
+            {
+                $commandes = new Commande($request->all());
+                $currentDate = date('Y-m-d');
 
+                $count = 0;
+                Log::debug($commandes->article_id);
+                $commandos = Commande::where('compte_id', '=', Auth::id())->where('article_id','=',$commandes->article_id)->get();
+                
+                if(isset($commandos)){
+                    foreach($commandos as $commando)
+                    {
+                        Log::debug('dans le foreach');
+                        $count = $count +1;
                     }
                 }
+                
+                    Log::debug($count);
+
+                $articles = Article::where('id','=',$commandes->article_id)->get();
+                Log::debug($articles);
+                if(isset($articles))
+                {
+                    foreach($articles as $article)
+                    {
+                        Log::debug($request->nb_max);
+                        if($count >= $article->nb_max)
+                        {
+                            return view('login'); 
+                        }
+                        else
+                        {
+                            Log::debug('ici');
+                            for($i = 0; $i < $request->nb_max; $i++)
+                            {
+                            $commandes2 = new Commande();
+                            $currentDate = date('Y-m-d');
+                            $commandes2->article_id = $request->article_id;
+                            $commandes2->couleur_id = $request->couleur_id;
+                            $commandes2->dimension_id = $request->dimension_id;
+                            $commandes2->compte_id = Auth::id();
+                            $commandes2->compte_id_modification = Auth::id();
+                            $commandes2->dateCommande = $currentDate;
+                            $commandes2->statu = 'Commandé';
+                            $commandes2->save();
+                            $count++;
+                            return view('Comptes.showLoginForm');
+                            }
+                            
+
+                        }
+                    }
+                } 
             }
+           
             
 
         }

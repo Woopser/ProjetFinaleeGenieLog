@@ -39,7 +39,6 @@
 
             <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
             <li class="nav-item">
-          <a style="color:rgb(8, 44, 115)" class="nav-link disabled">Déconnecter</a>
         </li>
         </ul>
         
