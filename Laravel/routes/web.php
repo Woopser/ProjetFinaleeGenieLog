@@ -37,20 +37,29 @@ Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->
 //Route pour sauvegarder les admins
 Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
 
+
 //Route pour la creation de client
 Route::get('/comptes/creationClient',[ComptesController::class, 'createClient'])->name('Comptes.createClient');
 //Route pour sauvegarder le client
 Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
+
 
 //Route pour ajouter un article
 Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
 Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
 Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
 
+
+//Juste la route pour la page principale
+
+
+Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
+
 //les routes de login/logout
 Route::get('login',[ComptesController::class, 'showLoginForm'])->name('login');
 
 Route::post('login',[ComptesController::class, 'login'])->name('comptes.login');
+
 
 Route::post('logout',[ComptesController::class, 'logout'])->name('logout');
 
@@ -60,6 +69,7 @@ Route::POST('/comptes/{id}/modifierClient/' ,[ComptesController::class, 'update'
 
 //Supprimer un client
 Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
+
 //Afficher les admins
 Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
 // Page principal (achats)

@@ -19,9 +19,17 @@ class ComptesController extends Controller
         return View('comptes.index');
     }
 
+
+
     public function showLoginForm()
     {
         return View('comptes.showLoginForm');
+    }
+
+    public function pageClient()
+    {
+        $comptes = Compte::where('typeCompte','=', 'Client')->get();
+        return View('Comptes.pageClient', compact('comptes'));
     }
 
     /**
@@ -73,15 +81,15 @@ class ComptesController extends Controller
     public function update(ComptesClientRequest $request,  $id)
     {
         try{
-             $comptes = Comptes::findOrFail($id);
-               //$comptes->prenom = $request->prenom;
-              //$comptes->nom = $request->nom;
-              //$comptes->email = $request->email;
-              //$comptes->motDePasse = $request->motDePasse;
-             
-                //$comptes->save();
-               return redirect()->route('comptes.index')->with('message', "Modification du client " . $comptes->nom . "réussi!");
-               }
+            $comptes = Compte::findOrFail($id);
+            $comptes->prenom = $request->prenom;
+            $comptes->nom = $request->nom;
+            $comptes->email = $request->email;
+            $comptes->motDePasse = $request->motDePasse;
+            $comptes->save();
+            //$comptes->save();
+            return redirect()->route('comptes.index')->with('message', "Modification du client " . $comptes->nom . "réussi!");
+            }
                 catch(\Throwable $e){
               
               Log::debug($e);

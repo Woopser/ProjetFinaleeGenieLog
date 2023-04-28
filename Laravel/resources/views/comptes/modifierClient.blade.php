@@ -4,6 +4,19 @@
 
 @section('contenu')
 
+@if(isset($errors) && $errors->any())
+
+    <div class="alert alert-danger">
+
+        @foreach($errors->all() as $error)
+
+            <p>{{$error}}</p>
+
+        @endforeach
+
+    </div>
+@endif
+
 <h1 class="text-center">Modification du client {{ $comptes->prenom }}</h1>
 @if (isset($comptes))
 
@@ -58,9 +71,7 @@
 </div>
 @endif
 
-@error('name')
-<span class="text-danger">{{ $message }}</span>
-@enderror
 
+<script src="{{ asset('js/validationClient.js') }}"></script>
 
 @endsection
