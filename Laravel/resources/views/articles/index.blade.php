@@ -9,7 +9,8 @@
 @endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
-  <form method="POST" action="{{route('Commandes.store')}}">
+  <form method="POST" action="{{route('Commandes.store')}}" class="col-3">
+
     @csrf
     <div class="card" style="width: 18rem">
         @if($article->image !=NULL)
