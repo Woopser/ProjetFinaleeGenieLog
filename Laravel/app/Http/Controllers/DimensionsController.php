@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dimension;
+use App\Http\Requests\DimensionsRequest;
+use Illuminate\Support\Facades\Log;
 
 class DimensionsController extends Controller
 {
@@ -19,15 +22,17 @@ class DimensionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dimensions.createDimension');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DimensionsRequest $request)
     {
-        //
+        $dimension = new Dimension($request->all());
+        $dimension -> save();
+        return redirect()->route('Articles.index');
     }
 
     /**

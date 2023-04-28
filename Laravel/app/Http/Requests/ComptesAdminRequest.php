@@ -24,7 +24,7 @@ class ComptesAdminRequest extends FormRequest
         return [
             'prenom' => 'required|min:3|max:100|regex:/[a-zA-ZÀ-ÿ]+/',
             'nom' => 'required|min:3|max:100|regex:/[a-zA-ZÀ-ÿ]+/',
-            'email' => 'required|max:100|regex:/^[a-zA-ZÀ-ÿ]+(\.[a-zA-Z]+)+\.([0-9]{2})@cegeptr.qc.ca$/'
+            'email' => 'required|max:100|regex:/^[a-zA-ZÀ-ÿ]+(\.[a-zA-Z]+)+\.([0-9]{2})@cegeptr.qc.ca$/|unique:comptes'
         ];
     }
 
@@ -42,7 +42,8 @@ class ComptesAdminRequest extends FormRequest
 
             'email.required' => 'Le email est requis',
             'email.max' => 'Le email doit avoir moin que 100 caractères.',
-            'email.regex' => 'Le email doit être conforme au email du cegep de Trois-Rivières.'
+            'email.regex' => 'Le email doit être conforme au email du cegep de Trois-Rivières.',
+            'email.unique' => 'Le email est déjà utilisé'
         ];
     }
 }

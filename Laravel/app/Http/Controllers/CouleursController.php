@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Couleur;
+use App\Http\Requests\CouleursRequest;
+use Illuminate\Support\Facades\Log;
 
 class CouleursController extends Controller
 {
@@ -11,7 +14,8 @@ class CouleursController extends Controller
      */
     public function index()
     {
-        //
+        $couleurs = Couleur::all();
+        return view('couleurs.index', compact('couleurs'));
     }
 
     /**
@@ -19,15 +23,17 @@ class CouleursController extends Controller
      */
     public function create()
     {
-        //
+        return view('couleurs.createCouleur');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CouleursRequest $request)
     {
-        //
+        $couleur = new Couleur($request->all());
+        $couleur->save();
+        return redirect()->route('Articles.index');
     }
 
     /**
@@ -49,9 +55,21 @@ class CouleursController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CouleursRequest $request)
     {
-        //
+        try{
+            $couleur = Couleur::findOrFail($request->couleur_id);
+
+            $couleur->nom = $request->nom;
+            $couleur->codeRGB = $request->codeRGB;
+
+            $couleur->save();
+            return redirect()->route('Couleurs.index');
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Couleurs.index')->withErrors(['la modification n\'a pas fonctionné']);
+        }
     }
 
     /**
@@ -59,6 +77,19 @@ class CouleursController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $couleur = Couleur::findOrFail($id);
+
+            $couleur->articles()->detach();
+
+            $couleur->delete();
+            return redirect()->route('Couleurs.index');
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Couleurs.index')->withErrors(['La suppression n\'a pas fonctionné']);
+        }
     }
+
+    
 }
