@@ -60,8 +60,6 @@ class ArticlesController extends Controller
             $article->nom = $request->nom;
             $article->prix = $request->prix;
             $article->nb_max = $request->nb_max;
-            
-            
             $uploadedFile = $request->file('image');
             if(isset( $uploadedFile)){
                 $nomFichierUnique = str_replace(' ', '_', $article->nom). '-' . uniqid() . '.' . $uploadedFile->extension();
@@ -79,7 +77,6 @@ class ArticlesController extends Controller
                 $article->campagne_id = $campagne->id;
             }
             $article->save();
-            
             //couleur management
             $couleurs = Couleur::all();
             foreach($couleurs as $couleur){
@@ -108,13 +105,13 @@ class ArticlesController extends Controller
                     }
                 }
             }
-            return redirect()->route('articles.index');
+            return redirect()->route('Articles.index');
         }
         catch(Throwable $e){
             Log::debug($e);
 
         }
-        return redirect()->route('articles.index');
+        return redirect()->route('Articles.index');
     }
 
     /**

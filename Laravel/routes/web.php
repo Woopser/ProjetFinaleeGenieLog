@@ -64,10 +64,13 @@ Route::get('articles/index',[ArticlesController::class, 'index'])->name('Article
 Route::get('/couleurs/create',[CouleursController::class, 'create'])->name('Couleurs.create');
 //Route pour la sauvegarde d'une couleur
 Route::POST('/couleurs/store',[CouleursController::class, 'store'])->name('Couleurs.store');
+//Route modifier couleur
+Route::POST('/couleurs/update',[CouleursController::class, 'update'])->name('Couleurs.update');
 //Route index couleur
 Route::get('/couleurs/index',[CouleursController::class, 'index'])->name('Couleurs.index');
-//Route destroy colours
-//Route::destroy('/Couleur/destroy/{id}',[CouleursController::class, 'destroy'])->name('Couleurs.destroy');
+Route::POST('/couleurs/index',[CouleursController::class, 'index'])->name('Couleurs.index');
+//Route destroy couleurs
+Route::delete('/couleurs/{id}/destroy',[CouleursController::class, 'destroy'])->name('Couleurs.destroy');
 //==================================================================================================================
 //Dimension
 //Route créer une dimension
