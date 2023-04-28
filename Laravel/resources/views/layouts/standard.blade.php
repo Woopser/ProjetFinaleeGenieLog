@@ -15,8 +15,16 @@
             src: url('{{ public_path('fonts\bw-modelica-lgc-bold.tff') }}');
         }
     </style>
-    <nav class="navbar bg-body-tertiary" style="margin-bottom: 3%">
-        <div class="container-fluid" font-family:Modelica >
+    <!--
+        couleur
+        000000
+        FAF8F8
+        5D7687
+        AC4658
+        231825
+    -->
+    <nav class="navbar bg-body-tertiary" style="margin-bottom: 3%" style="background-color: black">
+        <div class="container-fluid" font-family:Modelica style="background-color: black">
             <img src="{{asset('img/logoInfo.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
         
             <a href="{{ route('comptes.index')}}">Connexion</a>
