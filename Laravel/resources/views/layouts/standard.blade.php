@@ -28,6 +28,10 @@
         <a href="{{ route('Couleurs.create') }}">Créer une couleur</a>
         <a href="{{ route('Dimensions.create') }}">Créer une dimension</a>
         <a href="{{ route('Articles.index')}}">Page d'achat</a>
+        <form method="POST" action="{{route('logout')}}">
+            @csrf
+            <button id="bouttonAj" type="submit">Deconnexion</button>
+          </form>  
 
        <!-- 
         <a href="">Modifier un client</a>

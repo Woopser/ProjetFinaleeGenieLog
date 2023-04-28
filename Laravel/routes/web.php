@@ -6,6 +6,7 @@ use App\Http\Controllers\CampagnesController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\CouleursController;
 use App\Http\Controllers\DimensionsController;
+use App\Http\Controllers\CommandesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,8 @@ Route::get('/couleurs/index',[CouleursController::class, 'index'])->name('Couleu
 Route::get('/dimensions/create',[DimensionsController::class, 'create'])->name('Dimensions.create');
 //Route pour la sauvegarde d'une couleur
 Route::POST('/dimensions/store',[DimensionsController::class, 'store'])->name('Dimensions.store');
+
+//===================================================================================================================
+//Commande
+//Rpute pour store les commadnes
+Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');

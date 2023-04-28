@@ -9,7 +9,7 @@
 @endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
-  <form method="POST">
+  <form method="POST" action="{{route('Commandes.store')}}">
     @csrf
     <div class="card" style="width: 18rem">
         @if($article->image !=NULL)
@@ -41,6 +41,7 @@
               <option class="dropdown-item" value="{{$i}}">{{$i}}</option>
               @endfor
             </select>
+            <input type="text" value="{{$article->id}}" style="visibility: hidden" name="article_id">
             <!--Pour plus tard, mettre un select pour la quantité-->
             <button type="submit" class="btn btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
