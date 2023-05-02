@@ -36,6 +36,7 @@
         <a href="{{ route('Couleurs.create') }}">Créer une couleur</a>
         <a href="{{ route('Dimensions.create') }}">Créer une dimension</a>
         <a href="{{ route('Articles.index')}}">Page d'achat</a>
+        <a href="{{ route('Campagne.index')}}">CRUD Campagne</a>
 
         <form method="POST" action="{{route('logout')}}">
             @csrf
