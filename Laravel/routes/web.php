@@ -40,9 +40,13 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
     //Routes pour creation de campagnes
-    Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
-    Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
+   
+
     //Route pour CRUD campagne
+
+
+
+
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagne.index');
     //Route pour ajouter un article
     Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
@@ -87,7 +91,7 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 {
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande
-    //Rpute pour store les commadnes
+    //Route pour store les commandes
     Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
 });
 
@@ -104,4 +108,15 @@ Route::get('/comptes/creationClient',[ComptesController::class, 'createClient'])
 //Route pour sauvegarder le client
 Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
 Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
+
+
+
+
+
+Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
+Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
+
+
+Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
+Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
 
