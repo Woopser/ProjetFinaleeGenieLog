@@ -24,24 +24,22 @@ class CheckRole
             
         }
 
-             // Vérifier si l'utilisateur courant a un des rôles autorisés
+        // Vérifier si l'utilisateur courant a un des rôles autorisés
             
-            $userRoles = explode(',', auth()->user()->typeCompte);
-            
-             foreach ($roles as $role) 
+        $userRoles = explode(',', auth()->user()->typeCompte);
+        
+        foreach ($roles as $role) 
+        {
+        
+            if (in_array($role, $userRoles))
             {
-            
-              if (in_array($role, $userRoles))
-            {
-            
-              return $next($request);
-            
-             }
-            
+        
+            return $next($request);
+        
             }
-            
+        
+        }
             // Sinon, rediriger vers une page d'erreur
-            
-                    return redirect()->back()->withErrors(["Vous n'avez pas l'accès a cette page"]);
+            return redirect()->back()->withErrors(["Vous n'avez pas l'accès a cette page"]);
     }
 }
