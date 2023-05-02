@@ -25,11 +25,13 @@ Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('camp
 //route pour page 404
 Route::get('campagne/notfound',[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
 
+
 /*  Connection Comptes*/
 Route::get('/',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
+
 
 
 //Route pour la creation d'admin
@@ -38,10 +40,12 @@ Route::get('/comptes/creationAdmin',[ComptesController::class, 'createAdmin'])->
 Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
 
 
+
 //Route pour la creation de client
 Route::get('/comptes/creationClient',[ComptesController::class, 'createClient'])->name('Comptes.createClient');
 //Route pour sauvegarder le client
 Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
+
 
 
 //Route pour ajouter un article
@@ -55,11 +59,13 @@ Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->na
 
 Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
 
+Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
+
+
 //les routes de login/logout
 Route::get('login',[ComptesController::class, 'showLoginForm'])->name('login');
 
 Route::post('login',[ComptesController::class, 'login'])->name('comptes.login');
-
 
 Route::post('logout',[ComptesController::class, 'logout'])->name('logout');
 
@@ -74,6 +80,9 @@ Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comp
 Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
 // Page principal (achats)
 Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
+
+
+
 //==================================================================================================================
 //Couleur
 //Route créer une couleur
@@ -87,6 +96,9 @@ Route::get('/couleurs/index',[CouleursController::class, 'index'])->name('Couleu
 Route::POST('/couleurs/index',[CouleursController::class, 'index'])->name('Couleurs.index');
 //Route destroy couleurs
 Route::delete('/couleurs/{id}/destroy',[CouleursController::class, 'destroy'])->name('Couleurs.destroy');
+
+
+
 //==================================================================================================================
 //Dimension
 //Route créer une dimension

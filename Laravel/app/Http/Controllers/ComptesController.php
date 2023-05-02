@@ -172,6 +172,8 @@ class ComptesController extends Controller
         }
         
     }
+         
+
 
     
     public function storeClient(ComptesClientRequest $request)
@@ -197,6 +199,28 @@ class ComptesController extends Controller
             Log::debug($e);
         }
         
+    }
+
+
+    public function showCommandes ()
+    {
+        // Récupère toutes les commandes du client
+       $commandes = Commande::where('compte_id', Auth::id())->get(); 
+        // Retournez la vue avec les commandes du client
+     return view('comptes.pageClient', ['commandes' => $commandes]);
+
+        if(isset($commandes)){
+
+         foreach($commandes as $commande){
+ 
+            $couleurs = Couleur::where('couleur_id','=',$couleur_id->id)->get();                   
+            $dimensions = Dimension::where('dimension_id','=',$dimension_id->id)->get();
+            $articles_id = Article_id::where('article_id','=',$article_id->id)->get();
+
+                }
+
+    }
+
     }
 
 }
