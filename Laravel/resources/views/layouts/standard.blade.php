@@ -8,7 +8,7 @@
     <title>@yield('titre')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css') }}" >
 </head>
-<body class="btRouge">
+<body>
     <style type="text/css">
         @font-face {
             font-family: Modelica;
@@ -23,8 +23,9 @@
         AC4658
         231825
     -->
-<!-- Nav bar d'admin -->
-@if(Auth::user()->typeCompte = "Admin")
+<!-- Nav bar d'admin-->
+@if(isset(Auth::user()->typeCompte))
+@if(Auth::user()->typeCompte = "admin") 
 <nav class="navbar ">
     <div class="container-fluid">
     <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
@@ -50,15 +51,18 @@
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Couleurs.create') }}" name="boutonNav">Créer une couleur</a>
             </li>
-            <li>
+            <li class="navLi">
                 <a class="navTxt" href="{{ route('Couleurs.index')}}" name="boutonNav">Couleurs</a>
             </li>
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Dimensions.create') }}" name="boutonNav">Créer une dimension</a>
             </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Dimensions.index') }}" name="boutonNav">Dimensions</a>
+            </li>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
-                <button class="navtxt btn btRouge"  id="bouttonAj" type="submit">Deconnexion</button>
+                <button class="navtxt btn btRouge whiteTxt"  id="bouttonAj" type="submit">Deconnexion</button>
               </form> 
           </ul>
         </div>
@@ -67,20 +71,20 @@
   </nav>
 <!-- Nav bar de client -->
 @elseif(Auth::user()->typeCompte = "Client")
-<nav class="navbar bg-body-tertiary" style="padding: 0% ">
-        <div class="container-fluid" font-family:Modelica>
+    <nav class="navbar bg-body-tertiary" style="padding: 0% ">
+        <div class="container-fluid" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a class="navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge"  id="bouttonAj" type="submit">Deconnexion</button>
             </form>
-    </div>
+        </div>
     </nav>
 <!-- Nav bar de superAdmin -->
 @elseif(Auth::user()->typeCompte = "SuperAdmin")
     <nav class="navbar bg-body-tertiary nav">
-        <div class="container-fluid" font-family:Modelica >
+        <div class="container-fluid" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a  class="navTxt" href="{{ route('Comptes.createAdmin')}}" name="boutonNav">Créer un compte Admin</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">
@@ -89,16 +93,18 @@
               </form>
         </div>
     </nav>
+    <!-- autre -->
+@endif  
 @else
-    <nav class="navbar bg-body-tertiary nav">
-        <div class="container-fluid" font-family:Modelica >
+    <nav class="navbar bg-body-tertiary nav" style="padding: 0%">
+        <div class="container-fluid navNoir" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a  class="navTxt" href="{{ route('comptes.index')}}" name="boutonNav">Connexion</a>
             <a  class="navTxt" href="{{ route('Comptes.createClient')}}" name="boutonNav">Créer un compte client</a>
             <a class="navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
         </div>
     </nav>
-@endif
+@endisset
 @yield('contenu')
 <div>
 </div>

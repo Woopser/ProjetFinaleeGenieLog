@@ -124,8 +124,11 @@ class ComptesController extends Controller
 
     public function login(Request $request)
     {
+        Log::debug($request->email);
+        Log::debug($request->password);
+        Log::debug(Hash::make($request->password));
         $reussi = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
-
+        
         if($reussi){
             
             Log::debug(Auth::user()->typeCompte);
@@ -178,8 +181,6 @@ class ComptesController extends Controller
     
     public function storeClient(ComptesClientRequest $request)
     {
-    
-        
         // Sauvegarder le client dans la base de données.
         try{
             
