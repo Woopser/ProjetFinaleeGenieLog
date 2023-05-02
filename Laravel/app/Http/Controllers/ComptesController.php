@@ -202,6 +202,7 @@ class ComptesController extends Controller
     }
 
 
+
     public function showCommandes ()
     {
         // Récupère toutes les commandes du client
@@ -222,5 +223,13 @@ class ComptesController extends Controller
     }
 
     }
+
+     //Logout
+     public function logout()
+     {
+         Auth::logout();
+         return redirect()->route('login')->with('message', 'Deconnecté');
+     }
+
 
 }

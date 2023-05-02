@@ -5,7 +5,7 @@
 @section('contenu')
 
 
-<div style="text-align: center">
+<div style="text-align: center marTop" >
     <p style="font-size: 75px">Pas de campagne en cours</p>
     <img src="{{asset('img/404.png')}}" width="30%" height="30%"   alt="Image non-disponible"/>
     <p>Revenez plus tard  

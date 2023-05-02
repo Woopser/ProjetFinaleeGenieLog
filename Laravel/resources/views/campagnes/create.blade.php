@@ -17,7 +17,7 @@
     </div>
 @endif
 
-<form method="post" action="{{ route('campagnes.store')}}" class="d-flex justify-content-center"> 
+<form method="post" action="{{ route('campagnes.store')}}" class="d-flex justify-content-center marTop"> 
     @csrf
     <div class="col-6">
 

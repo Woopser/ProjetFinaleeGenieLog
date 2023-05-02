@@ -30,3 +30,17 @@ nav{
 #navLien{
     text-decoration:none;
 }
+
+.marTop{
+    margin-top: 3%;
+}
+
+.navTxt{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.navTxtOver{
+    color: #5D7687;
+    text-decoration: none;
+}
