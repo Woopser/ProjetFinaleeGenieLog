@@ -20,7 +20,7 @@ class CheckRole
         if (!auth()->check()) 
         {
 
-            return redirect()->route('produits.index')->withErrors(['Accès interdit']);
+            return redirect()->route('login')->withErrors(['Accès interdit']);
             
         }
 
@@ -40,6 +40,8 @@ class CheckRole
         
         }
             // Sinon, rediriger vers une page d'erreur
-            return redirect()->back()->withErrors(["Vous n'avez pas l'accès a cette page"]);
+
+            
+           return redirect()->route('login')->withErrors(['Vous n\'avez pas l\'accès a cette page']);
     }
 }

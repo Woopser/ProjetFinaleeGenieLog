@@ -23,6 +23,7 @@
         AC4658
         231825
     -->
+
     <nav class="navbar bg-body-tertiary" style="padding: 0% " style="background-color: #000000">
         <div class="container-fluid" font-family:Modelica style="background-color: #000000 ">
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
@@ -37,6 +38,7 @@
             <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class="navTxt" href="{{ route('Dimensions.create') }}" name="boutonNav">Créer une dimension</a>
             <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
             <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Couleurs.index')}}" name="boutonNav">Couleurs</a>
+            <a href="{{ route('Campagne.index')}}">CRUD Campagne</a>
         <form method="POST" action="{{route('logout')}}">
             @csrf
             <button id="bouttonAj" type="submit">Deconnexion</button>
