@@ -1,5 +1,5 @@
 @extends('layouts.standard')
-@section('titre', 'IndexCouleur')
+@section('titre', 'indexDimension')
 @section('contenu')
 
 @if(isset($errors) && $errors->any())
@@ -25,14 +25,14 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-6">
-            @foreach($couleurs as $couleur)
+        <div class="col-3 col-sm-3">
+            @foreach($dimensions as $dimension)
                 <div class="row" >
-                    <div class="col-10" style="background-color:  #{{$couleur->codeRGB}}">
-                    <p class="whiteTxt">{{$couleur->nom}}</p>
+                    <div class="col-8">
+                    <p >{{$dimension->dimension}}</p>
                     </div>
                     <div class="col-2">
-                        <form id="formSupprimer" class="col-4" method="post" action="{{route('Couleurs.destroy', [$couleur->id])}}">
+                        <form id="formSupprimer" class="col-4" method="post" action="{{route('Dimensions.destroy', [$dimension->id])}}">
                             @csrf
                             @method('DELETE')
                             <div class="d-flex justify-content-center">
@@ -43,31 +43,25 @@
                 </div>
             @endforeach
         </div>
-        <form id="formModifier"  class=" col-5" method="POST" action="{{route('Couleurs.update')}}">
+        <div class="col-sm-1 col-1"></div>
+        <form id="formModifier"  class="col-sm-4 col-5" method="POST" action="{{route('Dimensions.update')}}">
             @csrf
             
             <div class="mb-3 form-group row">
-                <label class="form-check-label col-sm-4">Couleur à modifier</label>
+                <label class="form-check-label col-sm-4">Dimension à modifier</label>
                 <div class="col-sm-8">
-                    <select class="form-select" name="couleur_id">
-                        @foreach($couleurs as $couleur)
-                            <option style="background-color: #{{$couleur->codeRGB}}; color: white;" value="{{$couleur->id}}" class="dropdown-item">{{$couleur->nom}}</option>
+                    <select class="form-select" name="dimension_id">
+                        @foreach($dimensions as $dimension)
+                            <option  value="{{$dimension->id}}" class="dropdown-item">{{$dimension->dimension}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="mb-3 form-group row">
-                <label class="col-form-label col-sm-4 textForm" for="nomArticle">Nom :</label>
+                <label class="col-form-label col-sm-4 textForm">Dimension :</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom')}}">
-                    <p id="errorNom" class="erreur"></p>
-                </div>
-            </div>
-            <div class="mb-3 form-group row">
-                <label class="col-form-label col-sm-4 textForm" for="nomArticle">Code hexadecimal :</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="codeRGB" name="codeRGB" value="{{ old('codeRGB')}}">
-                    <p id="errorCodeRGB" class="erreur"></p>
+                    <input type="text" class="form-control" id="dimension" name="dimension" value="{{ old('dimension')}}">
+                    <p id="errorDimension" class="erreur"></p>
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -77,5 +71,9 @@
     </div>
 </div>
 
-<script src="{{ asset('js/validationCouleur.js') }}"></script>
+
+
+
+
+<script src="{{ asset('js/validationDimension.js') }}"></script>
 @endsection

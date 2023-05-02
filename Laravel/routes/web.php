@@ -67,7 +67,13 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     Route::get('/dimensions/create',[DimensionsController::class, 'create'])->name('Dimensions.create');
     //Route pour la sauvegarde d'une couleur
     Route::POST('/dimensions/store',[DimensionsController::class, 'store'])->name('Dimensions.store');
-
+    //Route pour lindex des dimensions
+    Route::get('/dimension/index',[DimensionsController::class, 'index'])->name('Dimensions.index');
+    Route::POST('/dimension/index',[DimensionsController::class, 'index'])->name('Dimensions.index');
+    //Route pour modifier une dimension
+    Route::POST('/dimension/update',[DimensionsController::class, 'update'])->name('Dimensions.update');
+    //Route pour modifier une dimension
+    Route::delete('/dimensions/{id}/destroy',[DimensionsController::class, 'destroy'])->name('Dimensions.destroy');
     //===================================================================================================================
 });
 
@@ -87,7 +93,7 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
 {
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande
-    //Rpute pour store les commadnes
+    //Route pour store les commadnes
     Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
 });
@@ -95,13 +101,16 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
 //Route pour tous, incluant les non connecté
 //route pour page 404
 Route::get('campagne/notfound',[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
-
+//Route de lindex d'article
+Route::get('Article/index',[ArticlesController::class, 'index'])->name('Articles.index');
 /*  Connection Comptes*/
 Route::get('/',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
-
+//Route de la creation de compte client
+Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
+Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
 
 
 

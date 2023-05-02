@@ -42,6 +42,7 @@ nav{
 
 nav{
     background-color: #000000;
+    padding: 0%;
 }
 
 .navBackGround{
@@ -63,4 +64,12 @@ nav{
 .max{
     width: 60%;
     height: 60%;
+}
+
+.navNoir{
+    background-color: #000000;
+}
+
+.whiteTxt{
+    color: #ffffff;
 }
