@@ -89,19 +89,21 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
     //Commande
     //Rpute pour store les commadnes
     Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
+    Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
 });
 
 //Route pour tous, incluant les non connecté
 //route pour page 404
 Route::get('campagne/notfound',[CampagnesController::class, 'showNotFound'])->name('Campagne.noCampagne');
+
 /*  Connection Comptes*/
 Route::get('/',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::get('/login',[ComptesController::class, 'showLoginForm'])->name('comptes.index');
 Route::POST('/login',[ComptesController::class, 'login'])->name('login');
 Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
-//Route pour la creation de client
-Route::get('/comptes/creationClient',[ComptesController::class, 'createClient'])->name('Comptes.createClient');
-//Route pour sauvegarder le client
-Route::post('/comptes/storeClient',[ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
-Route::get('articles/index',[ArticlesController::class, 'index'])->name('Articles.index');
+
+
+
+
+
 
