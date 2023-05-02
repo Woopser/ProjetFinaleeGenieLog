@@ -188,6 +188,7 @@ class ComptesController extends Controller
             $compte->password = Hash::make($compte->password);
             // Ajouter le type Client au compte.
             $compte->typeCompte = "Client";
+            Log::debug($compte->password);
             // Sauvegarder le compte.
             $compte->save();
             // Redirection.

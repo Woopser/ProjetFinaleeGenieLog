@@ -72,7 +72,7 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
 });
 
 //Route pour les clients seulement
-Route::middleware(['CheckRole:SuperAdmin'])->group(function () 
+Route::middleware(['CheckRole:Client'])->group(function () 
 {
     // Modifier un comptes client
     Route::get('/comptes/{id}/edit',[ComptesController::class, 'edit'])->name('Comptes.edit');
@@ -83,7 +83,7 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 });
 
 //Route pour admin et clients
-Route::middleware(['CheckRole:SuperAdmin'])->group(function () 
+Route::middleware(['CheckRole:Client,Admin'])->group(function () 
 {
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande

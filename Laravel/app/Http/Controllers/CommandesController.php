@@ -65,11 +65,11 @@ class CommandesController extends Controller
                         Log::debug($request->nb_max);
                         if($count >= $article->nb_max)
                         {
-                            return view('login'); 
+                            return view('Articles.index'); 
                         }
                         else
                         {
-                            Log::debug('ici');
+                            Log::debug($request->nb_max);
                             for($i = 0; $i < $request->nb_max; $i++)
                             {
                             $commandes2 = new Commande();
@@ -83,9 +83,8 @@ class CommandesController extends Controller
                             $commandes2->statu = 'Commandé';
                             $commandes2->save();
                             $count++;
-                            return view('Comptes.showLoginForm');
                             }
-                            
+                            return view('Comptes.showLoginForm');
 
                         }
                     }

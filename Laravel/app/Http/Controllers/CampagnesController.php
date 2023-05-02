@@ -14,7 +14,7 @@ class CampagnesController extends Controller
     public function index()
     {
         $campagnes = Campagne::all();
-        return view('Campagne.index', compact('campagnes'));
+        return view('Campagnes.index', compact('campagnes'));
     }
 
     /**
