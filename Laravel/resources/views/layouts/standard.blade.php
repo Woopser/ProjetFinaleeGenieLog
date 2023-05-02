@@ -23,58 +23,37 @@
         AC4658
         231825
     -->
-    <nav class="navbar bg-body-tertiary" style="margin-bottom: 3%" style="background-color: black">
-        <div class="container-fluid" font-family:Modelica style="background-color: black">
-            <img src="{{asset('img/logoInfo.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
-        
-            <a href="{{ route('comptes.index')}}">Connexion</a>
-         <a href="{{ route('Comptes.createClient')}}">Créer un compte client</a>
-        <a href="{{ route('Comptes.createAdmin')}}">Créer un compte admin</a>
-        <a href="{{ route('Comptes.showAdmin')}}">Afficher admin</a>
-        <a href="{{ route('Campagnes.create')}}">Créer une campagne</a>
-        <a href="{{ route('Articles.create')}}">Créer un article</a>
-        <a href="{{ route('Couleurs.create') }}">Créer une couleur</a>
-        <a href="{{ route('Dimensions.create') }}">Créer une dimension</a>
-        <a href="{{ route('Articles.index')}}">Page d'achat</a>
-        <a href="{{ route('Campagne.index')}}">CRUD Campagne</a>
 
+    <nav class="navbar bg-body-tertiary" style="padding: 0% " style="background-color: #000000">
+        <div class="container-fluid" font-family:Modelica style="background-color: #000000 ">
+            <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
+            
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('comptes.index')}}" name="boutonNav">Connexion</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Comptes.createClient')}}" name="boutonNav">Créer un compte client</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Comptes.createAdmin')}}" name="boutonNav">Créer un compte admin</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Comptes.showAdmin')}}" name="boutonNav" >Afficher admin</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Campagnes.create')}}" name="boutonNav">Créer une campagne</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Articles.create')}}" name="boutonNav">Créer un article</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Couleurs.create') }}" name="boutonNav">Créer une couleur</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class="navTxt" href="{{ route('Dimensions.create') }}" name="boutonNav">Créer une dimension</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
+            <a onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" class=" navTxt" href="{{ route('Couleurs.index')}}" name="boutonNav">Couleurs</a>
+            <a href="{{ route('Campagne.index')}}">CRUD Campagne</a>
         <form method="POST" action="{{route('logout')}}">
             @csrf
             <button id="bouttonAj" type="submit">Deconnexion</button>
           </form>  
-        <a href="{{ route('Couleurs.index')}}">Couleurs</a>
-
-
+        
        <!-- 
         <a href="">Modifier un client</a>
        -->
 
-            <ul class="nav justify-content-end" style="font-size: 175%" style="color:rgb(8, 44, 115)">
-            <li class="nav-item">
-        </li>
-        </ul>
-        
     </div>
     </nav>
-    
-    
-
-  
-
-
-
-
-
-
-
-
-
 
 @yield('contenu')
-
 <div>
-
-
 </div>
 </body>
 </html>
+<script src="{{ asset('js/layoutJs.js') }}"></script>

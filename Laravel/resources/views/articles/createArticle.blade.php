@@ -46,7 +46,7 @@
     
 </script>
 
-<div class="align-items-center">
+<div class="align-items-center marTop">
     <form id="form" class="d-flex justify-content-center" method="post" action="{{route('Article.store')}}" enctype="multipart/form-data" onsubmit="return Validate();">
         @csrf
         <div class="col-6">

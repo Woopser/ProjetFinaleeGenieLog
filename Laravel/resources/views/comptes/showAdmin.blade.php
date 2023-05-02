@@ -5,7 +5,7 @@
 
 
 <body>
-<div class="location border-warning" id="home">
+<div class="location border-warning marTop" id="home">
     <div class="box my-5">
        @if(isset($comptes))
           @foreach($comptes as $compte)
