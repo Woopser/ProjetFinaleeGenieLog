@@ -5,7 +5,7 @@
 
 
 <body>
-    <div class="location border-warning col-xl-12" id="home" >
+    <div class="location border-warning col-xl-12 marTop" id="home" >
         <div class="box my-5 col-xl-12">
 
             @if (isset($comptes))

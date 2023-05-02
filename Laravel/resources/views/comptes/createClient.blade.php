@@ -18,7 +18,7 @@
     </div>
 @endif
 
-<div class="align-items-center">
+<div class="align-items-center marTop">
 <form class="d-flex justify-content-center" method="post" action="{{route('Comptes.storeClient')}}">
     @csrf
     <div class="col-6">

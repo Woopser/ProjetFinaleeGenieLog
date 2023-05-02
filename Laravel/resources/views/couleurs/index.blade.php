@@ -15,7 +15,7 @@
     </div>
 @endif
 
-<div class="align-items-center ">
+<div class="align-items-center marTop">
     <div class="row d-flex justify-content-center">
         <div class="form-check col-5">
             <h2>Supprimer</h2>

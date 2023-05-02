@@ -21,7 +21,7 @@
 @if (isset($comptes))
 
 
-<div class="align-items-center">
+<div class="align-items-center marTop">
 <form class="d-flex justify-content-center" method="post" action="{{route('Comptes.modifierClient', [$comptes->id])}}">
     @csrf
     <div class="col-6">
