@@ -40,7 +40,27 @@ nav{
     text-decoration: none;
 }
 
-.navTxtOver{
-    color: #5D7687;
-    text-decoration: none;
+nav{
+    background-color: #000000;
+}
+
+.navBackGround{
+    background-color: #5D7687;
+}
+
+.btBleu{
+    background-color: #5D7687;
+}
+
+.btRouge{
+    background-color: #AC4658;
+}
+.navLi{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.max{
+    width: 60%;
+    height: 60%;
 }
