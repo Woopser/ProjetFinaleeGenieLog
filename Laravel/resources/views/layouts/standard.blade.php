@@ -19,7 +19,7 @@
     -->
 <!-- Nav bar d'admin-->
 @if(isset(Auth::user()->typeCompte))
-@if(Auth::user()->typeCompte == "admin") 
+@if(Auth::user()->typeCompte == "Admin") 
 <nav class="navbar ">
     <div class="container-fluid">
     <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
@@ -53,6 +53,9 @@
             </li>
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Dimensions.index') }}" name="boutonNav">Dimensions</a>
+            </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Comptes.editAdmin') }}" name="boutonNav">Mon compte</a>
             </li>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Compte;
 use App\Http\Requests\ComptesAdminRequest;
+use App\Http\Requests\ComptesAdminModifRequest;
 use App\Http\Requests\ComptesClientRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,7 +86,7 @@ class ComptesController extends Controller
             $comptes->prenom = $request->prenom;
             $comptes->nom = $request->nom;
             $comptes->email = $request->email;
-            $comptes->motDePasse = $request->motDePasse;
+            $comptes->motDePasse = Hash::make($request->motDePasse);
             $comptes->save();
             //$comptes->save();
             return redirect()->route('comptes.index')->with('message', "Modification du client " . $comptes->nom . "réussi!");
@@ -124,14 +125,8 @@ class ComptesController extends Controller
 
     public function login(Request $request)
     {
-        Log::debug($request->email);
-        Log::debug($request->password);
-        Log::debug(Hash::make($request->password));
         $reussi = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
-        
         if($reussi){
-            
-            Log::debug(Auth::user()->typeCompte);
             return redirect()->route('Articles.index') ->with('message',"Connexion réussie");   
         }
             else{
@@ -233,5 +228,24 @@ class ComptesController extends Controller
          return redirect()->route('login')->with('message', 'Deconnecté');
      }
 
+     public function editAdmin(){
+        $id = Auth::id();
+        $compte=Compte::findOrFail($id);
+        return view('comptes.modifierAdmin', compact("compte"));
+     }
 
+     public function updateAdmin(ComptesAdminModifRequest $request){
+        try{
+            $compte = Couleur::findOrFail(Auth::id());
+            $compte->nom = $request->nom;
+            $compte->prenom = $request->prenom;
+            $compte->password = $request->password;
+            $couleur->save();
+            return redirect()->route('Couleurs.index');
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Couleurs.index')->withErrors(['la modification n\'a pas fonctionné']);
+        }
+     }
 }

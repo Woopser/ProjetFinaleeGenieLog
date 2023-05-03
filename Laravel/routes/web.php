@@ -39,6 +39,11 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 //Route pour admins
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
+    //Route pour modification d'admin
+    Route::get('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
+    Route::post('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
+    Route::post('/comptes/updateAdmin',[ComptesController::class, 'updateAdmin'])->name('Comptes.updateAdmin');
+    //=================================================================================================================
     //Routes pour creation de campagnes
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
