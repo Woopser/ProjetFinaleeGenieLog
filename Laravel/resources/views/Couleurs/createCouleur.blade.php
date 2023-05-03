@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" id="bouton" class="btn btn-danger">Créer</button>
+                <button type="submit" id="bouton" class="btn btBleu whiteTxt">Créer</button>
             </div>
         </div>
     </form>

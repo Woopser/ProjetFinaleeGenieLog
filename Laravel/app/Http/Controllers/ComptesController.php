@@ -125,8 +125,11 @@ class ComptesController extends Controller
 
     public function login(Request $request)
     {
+        Log::debug($request->email);
+        Log::debug($request->password);
+        Log::debug(Hash::make($request->password));
         $reussi = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
-
+        
         if($reussi){
             
             Log::debug(Auth::user()->typeCompte);
@@ -173,12 +176,12 @@ class ComptesController extends Controller
         }
         
     }
+         
+
 
     
     public function storeClient(ComptesClientRequest $request)
     {
-    
-        
         // Sauvegarder le client dans la base de données.
         try{
             
@@ -189,6 +192,7 @@ class ComptesController extends Controller
             $compte->password = Hash::make($compte->password);
             // Ajouter le type Client au compte.
             $compte->typeCompte = "Client";
+            Log::debug($compte->password);
             // Sauvegarder le compte.
             $compte->save();
             // Redirection.
@@ -200,11 +204,35 @@ class ComptesController extends Controller
         
     }
 
+
+
+    public function showCommandes ()
+    {
+        // Récupère toutes les commandes du client
+       $commandes = Commande::where('compte_id', Auth::id())->get(); 
+        // Retournez la vue avec les commandes du client
+     return view('comptes.pageClient', ['commandes' => $commandes]);
+
+        if(isset($commandes)){
+
+         foreach($commandes as $commande){
+ 
+            $couleurs = Couleur::where('couleur_id','=',$couleur_id->id)->get();                   
+            $dimensions = Dimension::where('dimension_id','=',$dimension_id->id)->get();
+            $articles_id = Article_id::where('article_id','=',$article_id->id)->get();
+
+                }
+
+    }
+
+    }
+
      //Logout
      public function logout()
      {
          Auth::logout();
          return redirect()->route('login')->with('message', 'Deconnecté');
      }
+
 
 }

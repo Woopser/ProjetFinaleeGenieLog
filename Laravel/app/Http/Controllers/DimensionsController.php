@@ -14,7 +14,9 @@ class DimensionsController extends Controller
      */
     public function index()
     {
-        //
+        $dimensions = Dimension::all();
+        return view('dimensions.index',compact('dimensions'));
+
     }
 
     /**
@@ -36,27 +38,22 @@ class DimensionsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DimensionsRequest $request)
     {
-        //
+        try{
+            $dimension = Dimension::findOrFail($request->dimension_id);
+
+            $dimension->dimension = $request->dimension;
+    
+            $dimension->save();
+            return redirect()->route('Dimensions.index');
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Dimensions.index')->withErrors(['la modification n\'a pas fonctionné']);
+        }
     }
 
     /**
@@ -64,6 +61,17 @@ class DimensionsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $dimension = Dimension::findOrFail($id);
+
+            $dimension->articles()->detach();
+
+            $dimension->delete();
+            return redirect()->route('Dimensions.index');
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Dimensions.index')->withErrors(['La suppression n\'a pas fonctionné']);
+        }
     }
 }
