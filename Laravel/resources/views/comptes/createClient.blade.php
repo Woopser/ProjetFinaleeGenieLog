@@ -50,7 +50,7 @@
         <div class=" mb-3 form-group row">
             <label  class="col-form-label col-sm-4" for="password"> Mot de passe :</label>
             <div class="col-sm-8">
-             <input type="password" class="form-control" id="motDePasse" placeholder="Mot de passe du client" name="motDePasse" value="{{ old('motDePasse')}}"><br>
+             <input type="password" class="form-control" id="motDePasse" placeholder="Mot de passe du client" name="password" value="{{ old('motDePasse')}}"><br>
                 <p class="erreur" id="errorMotDePasse"></p>
             </div>
         </div>
