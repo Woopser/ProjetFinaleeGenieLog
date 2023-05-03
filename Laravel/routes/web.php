@@ -40,9 +40,18 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
     //Routes pour creation de campagnes
+    
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
+    
+    
     //Route pour CRUD campagne
+    
+    Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
+    Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
+
+
+
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagne.index');
     //Route pour ajouter un article
     Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
@@ -93,7 +102,11 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
 {
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande
+
+    //Route pour store les commandes
+
     //Route pour store les commadnes
+
     Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
 });
@@ -111,6 +124,12 @@ Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
 //Route de la creation de compte client
 Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
 Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
+
+
+
+
+
+
 
 
 

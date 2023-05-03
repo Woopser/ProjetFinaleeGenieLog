@@ -63,15 +63,30 @@ class CampagnesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $campagnes = Campagne::findOrFail($id);
+        return View('Campagnes.modifierCampagne', compact('campagnes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CampagnesRequest $request, string $id)
     {
-        //
+        try{
+            $campagnes = Compte::findOrFail($id);
+            $campagnes->nom = $request->nom;
+            $campagnes->dateDeb = $request->dateDeb;
+            $campagnes->dateDebFond = $request->dateDebFond;
+            $campagnes->dateRemiseFond = $request->dateRemiseFond;
+            $campagnes->dateFin = $request->dateFin;
+            $campagnes->save();
+            return redirect()->route('campagnes.index')->with('message', "Modification de la camapagne " . $campagnes->nom . "réussi!");
+            }
+                catch(\Throwable $e){
+              
+              Log::debug($e);
+                return redirect()->route('campagnes.index')->withErrors(['la modification n\'a pas fonctionné']);
+               }
     }
 
     /**
