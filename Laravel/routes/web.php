@@ -86,6 +86,9 @@ Route::middleware(['CheckRole:Client'])->group(function ()
 
     //Supprimer un client
     Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
+
+    //Voir les commandes 
+    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('commande.client');
 });
 
 //Route pour admin et clients

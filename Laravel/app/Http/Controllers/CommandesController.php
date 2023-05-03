@@ -8,6 +8,8 @@ use App\Http\Controllers\CommandesController;
 use App\Models\Commande;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
+use App\Models\Couleur;
+use App\Models\Dimension;
 
 class CommandesController extends Controller
 {
@@ -105,6 +107,19 @@ class CommandesController extends Controller
     public function show(string $id)
     {
         //
+    }
+
+    public function showClient(string $id)
+    {
+        $commandes = Commande::where('compte_id', '=', Auth::id())->get();
+        if(isset($commandes)){
+            foreach($commandes as $commande){
+                $articles = Article::where('id', '=',$commande->article_id)->get();
+                $couleurs = Couleur::where('id', '=',$commande->couleur_id)->get();
+                $dimensions = Dimension::where('id', '=',$commande->dimension_id)->get();
+            }
+        }
+        return view('Commandes.client', compact('articles','campagnes','couleurs','dimensions'));
     }
 
     /**

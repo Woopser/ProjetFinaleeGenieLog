@@ -19,7 +19,7 @@
     -->
 <!-- Nav bar d'admin-->
 @if(isset(Auth::user()->typeCompte))
-@if(Auth::user()->typeCompte == "admin") 
+@if(Auth::user()->typeCompte == "Admin") 
 <nav class="navbar ">
     <div class="container-fluid">
     <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
