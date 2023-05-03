@@ -40,10 +40,15 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
     //Routes pour creation de campagnes
-   
-
+    
+    Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
+    Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
+    
+    
     //Route pour CRUD campagne
-
+    
+    Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
+    Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
 
 
 
@@ -113,10 +118,5 @@ Route::get('articles/index',[ArticlesController::class, 'index'])->name('Article
 
 
 
-Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
-Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
 
-
-Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
-Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
 
