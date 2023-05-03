@@ -9,12 +9,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css') }}" >
 </head>
 <body>
-    <style type="text/css">
-        @font-face {
-            font-family: Modelica;
-            src: url('{{ public_path('fonts\bw-modelica-lgc-bold.tff') }}');
-        }
-    </style>
     <!--
         couleur
         000000
@@ -25,7 +19,7 @@
     -->
 <!-- Nav bar d'admin-->
 @if(isset(Auth::user()->typeCompte))
-@if(Auth::user()->typeCompte = "admin") 
+@if(Auth::user()->typeCompte == "admin") 
 <nav class="navbar ">
     <div class="container-fluid">
     <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
@@ -70,21 +64,21 @@
     </div>
   </nav>
 <!-- Nav bar de client -->
-@elseif(Auth::user()->typeCompte = "Client")
+@elseif(Auth::user()->typeCompte == "Client")
     <nav class="navbar bg-body-tertiary" style="padding: 0% ">
-        <div class="container-fluid" >
+        <div class="container-fluid navNoir" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a class="navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
-                <button class="navtxt btn btRouge"  id="bouttonAj" type="submit">Deconnexion</button>
+                <button class="navtxt btn btRouge "  id="bouttonAj" type="submit">Deconnexion</button>
             </form>
         </div>
     </nav>
 <!-- Nav bar de superAdmin -->
-@elseif(Auth::user()->typeCompte = "SuperAdmin")
+@elseif(Auth::user()->typeCompte == "SuperAdmin")
     <nav class="navbar bg-body-tertiary nav">
-        <div class="container-fluid" >
+        <div class="container-fluid navNoir" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a  class="navTxt" href="{{ route('Comptes.createAdmin')}}" name="boutonNav">Créer un compte Admin</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">

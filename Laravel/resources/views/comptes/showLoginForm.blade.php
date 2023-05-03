@@ -23,7 +23,6 @@
     
     <div class="row">
     <div class="col-xl-4 offset-xl-4 text-center">
-        <!-- je sais pas pourquoi mais je suis pas capable de mettre la class -->
     <button type="submit" class="btn btBleu whiteTxt">Connexion</button>
     </div>
     </div>
