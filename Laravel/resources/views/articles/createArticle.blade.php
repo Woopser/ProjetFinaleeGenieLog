@@ -82,7 +82,7 @@
                 <div class="col-6">
                     @foreach($couleurs as $couleur)
                     <div style="background-color: #{{$couleur->codeRGB}} " class="form-check">
-                        <label style="color: white" class="form-check-label" for="flexCheckDefault">
+                        <label  class="form-check-label whiteTxt" for="flexCheckDefault">
                             {{$couleur->nom}}
                         </label>
                         <input class="form-check-input" type="checkbox" value="couleur" id="couleur . {{$couleur->id}}" name="{{$couleur->codeRGB}}" >
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" id="bouton" class="btn btn-danger">Créer</button>
+                <button type="submit" id="bouton" class="btn btRouge">Créer</button>
             </div>
         </div>
     </form>

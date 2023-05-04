@@ -28,7 +28,7 @@
 
         
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="prenomClient">Prenom du client :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="prenomClient">Prenom du client :</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control @error('prenom') is-invalid @enderror" id="prenomClient" name="prenom" placeholder="Prenom du client" value="{{ old('prenom', $comptes->prenom)}}">
                 <p class="erreur" id="errorPrenom"></p>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="nomClient">Nom du client :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="nomClient">Nom du client :</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control @error('nom') is-invalid @enderror" id="nomClient" name="nom" placeholder="Nom du client" value="{{ old('nom', $comptes->nom)}}">
                 <p class="erreur" id="errorNom"></p>
@@ -45,7 +45,7 @@
         </div>
 
         <div class=" mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4" for="emailClient">Email du Client :</label>
+            <label  class="col-form-label col-sm-4" for="emailClient">Email du Client :</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="emailClient"  name="email" placeholder="Adresse courriel du client" value="{{ old('email', $comptes->email)}}">
                 <p class="erreur" id="errorEmail"></p>
@@ -53,7 +53,7 @@
         </div>
 
         <div class=" mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4" for="password"> Mot de passe</label>
+            <label  class="col-form-label col-sm-4" for="password"> Mot de passe</label>
             <div class="col-sm-8">
              <input type="password" class="form-control @error('motDePasse') is-invalid @enderror" id="motDePasse" placeholder="Mot de passe du client" name="motDePasse" value="{{ old('motDePasse', $comptes->motDePasse)}}"><br>
                 <p class="erreur" id="errorMotDePasse"></p>
