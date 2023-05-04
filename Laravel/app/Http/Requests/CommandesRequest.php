@@ -25,6 +25,7 @@ class CommandesRequest extends FormRequest
             'article_id' => 'required|numeric',
             'couleur_id' => 'required|numeric',
             'dimension_id' => 'required|numeric',
+            'campagne_id' =>'required|numeric',
             'compte_id' => 'required|numeric',
             'compte_id_modification' => 'required|numeric',
             'dateCommande' => 'required|date|after:today',
@@ -46,6 +47,9 @@ class CommandesRequest extends FormRequest
 
             'compte_id.required' => 'Le champ Compte est obligatoire.',
             'compte_id.numeric' => 'Le champ Compte doit être numérique.',
+
+            'campagne_id.required' => 'Le champ campagne est obligatoire.',
+            'campagne_id.numeric' => 'Le champ campagne doit être numérique.',
 
             'compte_id_modification.required' => 'Le champ Compte Modification est obligatoire.',
             'compte_id_modification.numeric' => 'Le champ Compte Modification doit être numérique.',

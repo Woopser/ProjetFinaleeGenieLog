@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('article_id')->constrained();
             $table->foreignId('couleur_id')->constrained();
             $table->foreignId('dimension_id')->constrained();
+            $table->foreignId('campagne_id')->constrained();
             $table->foreignId('compte_id')->constrained();
             $table->foreignId('compte_id_modification')->constrained();
             $table->dateTime('dateCommande');

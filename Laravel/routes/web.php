@@ -102,6 +102,9 @@ Route::middleware(['CheckRole:Client'])->group(function ()
 
     //Supprimer un client
     Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
+
+    //Voir les commandes 
+    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('commande.client');
 });
 
 //Route pour admin et clients
@@ -114,7 +117,9 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
 
     //Route pour store les commadnes
 
-    Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
+
+    Route::POST('/commande/{id}/store',[CommandesController::class, 'store'])->name('Commandes.store');
+
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
 });
 

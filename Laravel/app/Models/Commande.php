@@ -9,7 +9,7 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','article_id', 'couleur_id','dimension_id', 'compte_id','compte_id_modification','dateCommande','statu'];
+    protected $fillable = ['id','article_id', 'couleur_id','dimension_id','campagne_id', 'compte_id','compte_id_modification','dateCommande','statu'];
 
     public function Commandes()
     {

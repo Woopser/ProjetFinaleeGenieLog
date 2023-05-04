@@ -55,6 +55,7 @@
                 <a class="navTxt " href="{{ route('Dimensions.index') }}" name="boutonNav">Dimensions</a>
             </li>
             <li class="navLi">
+
                 <a class="navTxt " href="{{ route('Articles.create') }}" name="boutonNav">Créer un article</a>
             </li>
             <li class="navLi">
