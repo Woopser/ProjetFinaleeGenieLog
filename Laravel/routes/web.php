@@ -49,6 +49,8 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
     //Route pour CRUD campagne
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagne.index');
+    //=================================================================================================================
+    //Article
     //Route pour ajouter un article
     Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
     Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');

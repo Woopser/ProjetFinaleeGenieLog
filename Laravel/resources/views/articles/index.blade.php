@@ -9,7 +9,7 @@
 @endforeach
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
-  <form method="POST" action="{{route('Commandes.store')}}" class="col-md-3 col-sm-12">
+  <form method="POST" action="{{route('Commandes.store', [$article->id])}}" class="col-md-3 col-sm-12">
 
     @csrf
     <div class="card " >

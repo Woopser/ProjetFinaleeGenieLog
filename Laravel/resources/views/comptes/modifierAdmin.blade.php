@@ -37,7 +37,7 @@
             <div class=" mb-3 form-group row">
                 <label  class="col-form-label col-sm-4" for="emailCompte">Mot de passe :</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="password"  name="passwor" value="{{ old('password')}}">
+                    <input type="text" class="form-control" id="password"  name="password" value="{{ old('password')}}">
                     <p id="errorPass" class="erreur"></p>
                 </div>
             </div>

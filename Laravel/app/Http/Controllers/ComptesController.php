@@ -208,14 +208,11 @@ class ComptesController extends Controller
      return view('comptes.pageClient', ['commandes' => $commandes]);
 
         if(isset($commandes)){
-
          foreach($commandes as $commande){
- 
             $couleurs = Couleur::where('couleur_id','=',$couleur_id->id)->get();                   
             $dimensions = Dimension::where('dimension_id','=',$dimension_id->id)->get();
             $articles_id = Article_id::where('article_id','=',$article_id->id)->get();
-
-                }
+        }
 
     }
 
@@ -236,16 +233,19 @@ class ComptesController extends Controller
 
      public function updateAdmin(ComptesAdminModifRequest $request){
         try{
-            $compte = Couleur::findOrFail(Auth::id());
+            $compte = Compte::findOrFail(Auth::id());
             $compte->nom = $request->nom;
             $compte->prenom = $request->prenom;
-            $compte->password = $request->password;
-            $couleur->save();
-            return redirect()->route('Couleurs.index');
+            $password = $request->password;
+            Log::debug($password);
+            $compte->password = Hash::make($password);
+            Log::debug($compte->password);
+            $compte->save();
+            return redirect()->route('Articles.index');
         }
         catch(\Throwable $e){
             Log::debug($e);
-            return redirect()->route('Couleurs.index')->withErrors(['la modification n\'a pas fonctionné']);
+            return redirect()->route('Comptes.editAdmin')->withErrors(['la modification n\'a pas fonctionné']);
         }
      }
 }

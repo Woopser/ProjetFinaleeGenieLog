@@ -57,7 +57,7 @@ targetNom.addEventListener('input', function(){
 let targetPassword;
 targetPassword = document.getElementById('password');
 targetPassword.addEventListener('input', function(){
-    let targetError = document.getElementById('errorNom');
+    let targetError = document.getElementById('errorPassword');
     let re = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
     let match = re.test(targetPassword.value);
     if(targetPassword.value.length == 0){
@@ -69,7 +69,7 @@ targetPassword.addEventListener('input', function(){
         targetPassword.classList.add('is-invalid');
     }
     else if(targetPassword.value.length < 3){
-        targetError.textContent = "vous devez avoir un minimun de 3 lettre";
+        targetError.textContent = "vous devez avoir un minimun de 3 caractère";
         targetPassword.classList.add('is-invalid');
     }
     else if(!match){
