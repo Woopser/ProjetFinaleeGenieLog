@@ -54,6 +54,9 @@
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Dimensions.index') }}" name="boutonNav">Dimensions</a>
             </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Articles.create') }}" name="boutonNav">Creation d'articles</a>
+            </li>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge whiteTxt"  id="bouttonAj" type="submit">Deconnexion</button>

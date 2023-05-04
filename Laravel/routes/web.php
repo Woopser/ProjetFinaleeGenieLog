@@ -97,7 +97,8 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande
     //Route pour store les commadnes
-    Route::POST('/commande/store',[CommandesController::class, 'store'])->name('Commandes.store');
+
+    Route::POST('/commande/{id}/store',[CommandesController::class, 'store'])->name('Commandes.store');
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
 });
 
