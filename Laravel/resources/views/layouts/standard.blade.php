@@ -40,7 +40,7 @@
                 <a class="navTxt " href="{{ route('Campagnes.create')}}" name="boutonNav">Créer une campagne</a>
             </li>
             <li class="navLi">
-                <a class="navTxt " href="{{ route('Campagne.index')}}">CRUD Campagne</a>
+                <a class="navTxt " href="{{ route('Campagnes.index')}}">CRUD Campagne</a>
             </li>
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Couleurs.create') }}" name="boutonNav">Créer une couleur</a>

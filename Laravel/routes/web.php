@@ -57,7 +57,7 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
 
 
 
-    Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagne.index');
+    Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagnes.index');
     //=================================================================================================================
     //Article
     //Route pour ajouter un article
