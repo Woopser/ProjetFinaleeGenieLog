@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(CouleurSeeder::class);
         $this->call(DimensionSeeder::class);
+        $this->call(UsagerSeeder::class);
     }
 }

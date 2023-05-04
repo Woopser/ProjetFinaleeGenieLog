@@ -6,15 +6,15 @@
 @section('contenu')
 @if(isset($errors) && $errors->any())
 
-    <div class="alert alert-danger">
+     <div class="alert alert-danger">
 
-        @foreach($errors->all() as $error)
+         @foreach($errors->all() as $error)
 
-            <p>{{$error}}</p>
+             <p>{{$error}}</p>
 
-        @endforeach
+        @endforeach
 
-    </div>
+    </div>
 @endif
 
 <form method="post" action="{{ route('campagnes.store')}}" class="d-flex justify-content-center marTop"> 
