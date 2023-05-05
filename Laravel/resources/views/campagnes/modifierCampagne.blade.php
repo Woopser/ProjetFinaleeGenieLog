@@ -13,53 +13,53 @@
              <p>{{$error}}</p>
 
         @endforeach
-
+    
     </div>
 @endif
 
-<form method="post" action="{{ route('campagnes.edit')}}" class="d-flex justify-content-center marTop"> 
+<form method="post" action="{{ route('Campagnes.update', [$campagnes->id])}}" class="d-flex justify-content-center marTop"> 
     @csrf
     <div class="col-6">
 
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm " for="nomCamp">Nom de la campagne :</label>
+            <label  class="col-form-label col-sm-4 textForm " for="nomCamp">Nom de la campagne :</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="nomCamp" name="nom" value="{{ old('nom', $campagne->nom)}}">
+                <input type="text" class="form-control" id="nomCamp" name="nom" value="{{ old('nom', $campagnes->nom)}}">
                 <p id="nomErr" class="erreur"></p>
             </div>
         </div>
 
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date début campagne :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="dateDeb">Date début campagne :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateDeb" name="dateDebut" value="{{ old('dateDeb', $campagne->dateDeb)}}">
+                <input type="date" class="form-control" id="dateDeb" name="dateDebut" value="{{ old('dateDeb', $campagnes->dateDebut)}}">
                 <p id="dateDebErr" class="erreur"></p>
             </div>
             
         </div>
     
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date début collecte :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="dateDeb">Date début collecte :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateDebFond" name="dateDebFond" value="{{ old('dateDebFond', $campagne->dateDebFond)}}">
+                <input type="date" class="form-control" id="dateDebFond" name="dateDebFond" value="{{ old('dateDebFond', $campagnes->dateDebFond)}}">
                 <p id="dateDebFondErr" class="erreur"></p>
             </div>
             
         </div>
 
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateFinFond">Date fin collecte :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="dateFinFond">Date fin collecte :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateRemiseFond" name="dateRemiseFond" value="{{ old('dateRemiseFond', $campagne->dateRemiseFond)}}">
+                <input type="date" class="form-control" id="dateRemiseFond" name="dateRemiseFond" value="{{ old('dateRemiseFond', $campagnes->dateRemiseFond)}}">
                 <p id="dateFinFondErr" class="erreur"></p>
             </div>
             
         </div>
 
         <div class="mb-3 form-group row">
-            <label style="color: rgb(8, 44, 115)" class="col-form-label col-sm-4 textForm" for="dateDeb">Date fin de campagne :</label>
+            <label  class="col-form-label col-sm-4 textForm" for="dateDeb">Date fin de campagne :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateFin" name="dateFin" value="{{ old('dateFin', $campagne->dateFin)}}">
+                <input type="date" class="form-control" id="dateFin" name="dateFin" value="{{ old('dateFin', $campagnes->dateFin)}}">
                 <p id="dateFinErr" class="erreur"></p>
             </div>
             
@@ -68,6 +68,13 @@
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-danger">Modifier</button>
         </div>
+
+          
+        <a href="{{ route('campagnes.finish', $campagnes->id) }}" class="btn btn-danger">Fin de campagne</a>
+
+
+
+
     </div>
 
     

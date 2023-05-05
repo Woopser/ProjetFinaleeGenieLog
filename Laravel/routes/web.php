@@ -53,8 +53,20 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
     //Route pour CRUD campagne
+
+    Route::get('/campagnes/edit',[CampagnesController::class, 'edit'])->name('Campagnes.edit');
+    Route::post('/campagnes/edit',[CampagnesController::class, 'edit'])->name('Campagnes.edit');
+    Route::post('/campagnes/{id}/update' ,[CampagnesController::class, 'update'])->name('Campagnes.update');
+    
+
+Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->name('campagnes.finish');
+
+
+
+
     Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
     Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
+
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagnes.index');
     //=================================================================================================================
     //Article
@@ -142,10 +154,7 @@ Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
 //Route de la creation de compte client
 Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
 Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
-
-
-
-
+Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
 
 //Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
 //Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('comptes.destroyAdmin');

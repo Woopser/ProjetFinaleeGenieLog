@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Campagne;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\CampagnesRequest;
 
 class CampagnesController extends Controller
@@ -61,33 +62,60 @@ class CampagnesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        $campagnes = Campagne::findOrFail($id);
-        return View('Campagnes.modifierCampagne', compact('campagnes'));
-    }
+        $campagnes = Campagne::where('enCours','=',true)->first();
+        Log::debug($campagnes->id);
+        return view('campagnes.modifierCampagne',compact('campagnes'));
+        
+    } 
+
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(CampagnesRequest $request, string $id)
     {
+
         try{
-            $campagnes = Compte::findOrFail($id);
+            $campagnes = Campagne::findOrFail($id);
             $campagnes->nom = $request->nom;
-            $campagnes->dateDeb = $request->dateDeb;
-            $campagnes->dateDebFond = $request->dateDebFond;
+            $campagnes->dateDebut = $request->dateDebut;
+            $campagnes->dateDebFond = $request->dateDebFond;;
             $campagnes->dateRemiseFond = $request->dateRemiseFond;
             $campagnes->dateFin = $request->dateFin;
             $campagnes->save();
-            return redirect()->route('campagnes.index')->with('message', "Modification de la camapagne " . $campagnes->nom . "réussi!");
+            return redirect()->route('Campagnes.index')->with('message', "Modification de la camapagne " . $campagnes->nom . "réussi!");
             }
                 catch(\Throwable $e){
               
               Log::debug($e);
-                return redirect()->route('campagnes.index')->withErrors(['la modification n\'a pas fonctionné']);
+                return redirect()->route('Campagnes.edit')->withErrors(['la modification n\'a pas fonctionné']);
                }
     }
+
+ 
+    public function finish($id)
+    {
+        $campagne = Campagne::findOrFail($id);
+    
+        if ($campagnes->date_fin < now()) {
+            $campagnes->enCours = false;
+            $campagnes->save();
+    
+            return redirect()->route('campagnes.index')->with('success', 'Campagne terminée avec succès !');
+        }
+    
+        return redirect()->route('campagnes.index')->with('error', 'La date de fin de la campagne n\'est pas encore arrivée.');
+    }
+
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
