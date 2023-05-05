@@ -61,6 +61,12 @@
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Comptes.editAdmin') }}" name="boutonNav">Mon compte</a>
             </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Commande.client') }}" name="boutonNav">Mon panier</a>
+            </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Commandes.admin') }}" name="boutonNav">Les commandes</a>
+            </li>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge whiteTxt"  id="bouttonAj" type="submit">Deconnexion</button>
@@ -76,6 +82,7 @@
         <div class="container-fluid navNoir" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a class="navTxt" href="{{ route('Articles.index')}}" name="boutonNav">Page d'achat</a>
+            <a class="navTxt " href="{{ route('Commande.client') }}" name="boutonNav">Mon panier</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge "  id="bouttonAj" type="submit">Deconnexion</button>

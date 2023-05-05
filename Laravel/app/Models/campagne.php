@@ -15,4 +15,8 @@ class Campagne extends Model
     {
         return $this->belongsToMany('App\Models\Article');
     }
+
+    public function commandes(){
+        return $this->belongsToMany('App\Models\Commande');
+    }
 }

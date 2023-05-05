@@ -89,6 +89,10 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     //Route pour modifier une dimension
     Route::delete('/dimensions/{id}/destroy',[DimensionsController::class, 'destroy'])->name('Dimensions.destroy');
     //===================================================================================================================
+    //Voir les commandes 
+    Route::get('/commandes/admin',[CommandesController::class, 'showAdmin'])->name('Commandes.admin');
+    //modifier les ommandes
+    Route::POST('/commandes/{id}/update',[CommandesController::class, 'update'])->name('Commandes.udpate');
 });
 
 //Route pour les clients seulement
@@ -101,8 +105,7 @@ Route::middleware(['CheckRole:Client'])->group(function ()
     //Supprimer un client
     Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
-    //Voir les commandes 
-    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('commande.client');
+    
 });
 
 //Route pour admin et clients
@@ -119,6 +122,11 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
     Route::POST('/commande/{id}/store',[CommandesController::class, 'store'])->name('Commandes.store');
 
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
+
+    //Voir les commandes 
+    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('Commande.client');
+    //Supprimer une commmandes
+    Route::delete('/commandes/{id}',[CommandesController::class, 'destroy'])->name('Commandes.destroy');
 });
 
 //Route pour tous, incluant les non connecté
