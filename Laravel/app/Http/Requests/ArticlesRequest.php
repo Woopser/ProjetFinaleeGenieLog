@@ -25,8 +25,8 @@ class ArticlesRequest extends FormRequest
             'prix' => 'max:100',
             'nom' => 'required|max:100',
             'image' => 'image|mimes:png,jpeg,jpg,gif|max:4096',
-            'nb_max' => 'required|min:1|max:2|regex:/^[0-9]+$/',
-            ''
+            'nb_max' => 'required|min:1|max:2|regex:/^[0-9]+$/'
+            
         ];
     }
 

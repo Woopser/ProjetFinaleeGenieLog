@@ -35,7 +35,7 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
     //liste admin
     Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
     //supprimer admin
-    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
+    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroy');
 });
 
 //Route pour admins
@@ -47,7 +47,7 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     Route::post('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/updateAdmin',[ComptesController::class, 'updateAdmin'])->name('Comptes.updateAdmin');
     //route pour delete admin
-    
+    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroy');
     //=================================================================================================================
     //Routes pour creation de campagnes
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
@@ -113,11 +113,8 @@ Route::middleware(['CheckRole:Client'])->group(function ()
     // Modifier un comptes client
     Route::get('/comptes/{id}/edit',[ComptesController::class, 'edit'])->name('Comptes.edit');
     Route::POST('/comptes/{id}/modifierClient/' ,[ComptesController::class, 'update'])->name('Comptes.modifierClient');
-
     //Supprimer un client
     Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
-
-    
 });
 
 //Route pour admin et clients
@@ -125,12 +122,7 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
 {
     Route::get('/compte/afficherClient',[ComptesController::class, 'pageClient'])->name('comptes.pageClient');
     //Commande
-
     //Route pour store les commandes
-
-    //Route pour store les commadnes
-
-
     Route::POST('/commande/{id}/store',[CommandesController::class, 'store'])->name('Commandes.store');
 
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
@@ -155,9 +147,3 @@ Route::POST('/logout',[ComptesController::class, 'logout'])->name('logout');
 Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
 Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
 Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
-
-//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
-//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('comptes.destroyAdmin');
-
-
-

@@ -46,7 +46,7 @@
             </div>
         </div>
     </form>
-    <form method="post" class="d-flex justify-content-center marTop" action="{{ route('comptes.destroyAdmin', [$compte->id]) }}">
+    <form method="post" class="d-flex justify-content-center marTop" action="{{ route('comptes.destroy', [$compte->id]) }}">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btRouge">Supprimer compte</button>
