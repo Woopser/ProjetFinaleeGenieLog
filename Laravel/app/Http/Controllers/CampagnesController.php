@@ -23,7 +23,7 @@ class CampagnesController extends Controller
      */
     public function showNotfound()
     {
-        return view('campagne.noCampagne');
+        return view('campagnes.noCampagne');
     }
 
     /**
@@ -104,10 +104,10 @@ class CampagnesController extends Controller
             $campagnes->enCours = false;
             $campagnes->save();
     
-            return redirect()->route('Campagnes.index')->with('success', 'Campagne terminée avec succès !');
+            return redirect()->route('Campagne.noCampagne')->with('success', 'Campagne terminée avec succès !');
         }
     
-        return redirect()->route('Campagnes.index')->with('error', 'La date de fin de la campagne n\'est pas encore arrivée.');
+        
     }
 
 
