@@ -13,6 +13,25 @@ class Commande extends Model
 
     public function Commandes()
     {
-        return this->belongsToMany('App\Models\Commande');
+        return $this->belongsToMany('App\Models\Commande');
     }
+
+    public function articles()
+    {
+        return $this->belongsTo(Article::class, 'article_id');
+    }
+    public function dimensions()
+    {
+        return $this->belongsTo(Dimension::class, 'dimension_id');
+    }
+    public function couleurs()
+    {
+        return $this->belongsTo(Couleur::class, 'couleur_id');
+    }
+    public function campagnes()
+    {
+        return $this->belongsTo(Campagne::class, 'campagne_id');
+    }
+
+
 }
