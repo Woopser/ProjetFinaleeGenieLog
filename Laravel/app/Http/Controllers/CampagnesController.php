@@ -23,7 +23,7 @@ class CampagnesController extends Controller
      */
     public function showNotfound()
     {
-        return view('campagne.noCampagne');
+        return view('campagnes.noCampagne');
     }
 
     /**
@@ -86,7 +86,7 @@ class CampagnesController extends Controller
             $campagnes->dateRemiseFond = $request->dateRemiseFond;
             $campagnes->dateFin = $request->dateFin;
             $campagnes->save();
-            return redirect()->route('Campagnes.index')->with('message', "Modification de la camapagne " . $campagnes->nom . "réussi!");
+            return redirect()->route('Campagnes.index')->with('message', "Modification de la campagne " . $campagnes->nom . "réussi!");
             }
                 catch(\Throwable $e){
               
@@ -98,16 +98,16 @@ class CampagnesController extends Controller
  
     public function finish($id)
     {
-        $campagne = Campagne::findOrFail($id);
+        $campagnes = Campagne::findOrFail($id);
     
         if ($campagnes->date_fin < now()) {
             $campagnes->enCours = false;
             $campagnes->save();
     
-            return redirect()->route('campagnes.index')->with('success', 'Campagne terminée avec succès !');
+            return redirect()->route('Campagne.noCampagne')->with('success', 'Campagne terminée avec succès !');
         }
     
-        return redirect()->route('campagnes.index')->with('error', 'La date de fin de la campagne n\'est pas encore arrivée.');
+        
     }
 
 
@@ -122,6 +122,6 @@ class CampagnesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

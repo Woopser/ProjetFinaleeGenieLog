@@ -64,6 +64,7 @@ Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->nam
 
 
 
+
     Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
     Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
 
