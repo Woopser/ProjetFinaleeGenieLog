@@ -91,6 +91,10 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     //Route pour modifier une dimension
     Route::delete('/dimensions/{id}/destroy',[DimensionsController::class, 'destroy'])->name('Dimensions.destroy');
     //===================================================================================================================
+    //Voir les commandes 
+    Route::get('/commandes/admin',[CommandesController::class, 'showAdmin'])->name('Commandes.admin');
+    //modifier les ommandes
+    Route::POST('/commandes/{id}/update',[CommandesController::class, 'update'])->name('Commandes.udpate');
 });
 
 //Route pour les clients seulement

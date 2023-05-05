@@ -64,6 +64,9 @@
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Commande.client') }}" name="boutonNav">Mon panier</a>
             </li>
+            <li class="navLi">
+                <a class="navTxt " href="{{ route('Commandes.admin') }}" name="boutonNav">Les commandes</a>
+            </li>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge whiteTxt"  id="bouttonAj" type="submit">Deconnexion</button>

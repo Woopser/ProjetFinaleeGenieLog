@@ -94,7 +94,7 @@ class CommandesController extends Controller
                             $commandes2->save();
                             $count++;
                             }
-                            return view('commandes.showLoginForm');
+                            return view('comptes.showLoginForm');
 
                         }
                     }
@@ -123,6 +123,14 @@ class CommandesController extends Controller
         return view('Commandes.client', compact('commandes'));
     }
 
+    
+    public function showAdmin()
+    {
+        $campagnes = Campagne::where('enCours',true)->first();
+        $commandes = Commande::where('campagne_id', '=', $campagnes->id)->with(['articles','dimensions','couleurs','comptes'])->get();
+        return view('Commandes.admin', compact('commandes'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -136,7 +144,14 @@ class CommandesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $commandes=Commande::findOrFail($id);
+            $commandes->statu = $request->statu;
+            $commandes->save();
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
     }
 
     /**
@@ -148,7 +163,7 @@ class CommandesController extends Controller
             $commandes=Commande::findOrFail($id);
             $commandes->delete();
 
-            return redirect()->route('Commande.client')->with('message', "Suppresion de commande)" . $commandes->id . "réussi!");
+            return redirect()->back()->with('message', "Suppresion de commande)" . $commandes->id . "réussi!");
         }
         catch(\Throwable $e){
             Log::debug($e);

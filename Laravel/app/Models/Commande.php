@@ -32,6 +32,10 @@ class Commande extends Model
     {
         return $this->belongsTo(Campagne::class, 'campagne_id');
     }
+    public function comptes()
+    {
+        return $this->belongsTo(Compte::class, 'compte_id');
+    }
 
 
 }
