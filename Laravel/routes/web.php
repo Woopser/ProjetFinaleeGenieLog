@@ -34,23 +34,26 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
     Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
     //liste admin
     Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+    //supprimer admin
+    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
 });
 
 //Route pour admins
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
+    //comptes
     //Route pour modification d'admin
     Route::get('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/updateAdmin',[ComptesController::class, 'updateAdmin'])->name('Comptes.updateAdmin');
+    //route pour delete admin
+    
     //=================================================================================================================
     //Routes pour creation de campagnes
-    
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
-    
-    
     //Route pour CRUD campagne
+
     Route::get('/campagnes/edit',[CampagnesController::class, 'edit'])->name('Campagnes.edit');
     Route::post('/campagnes/edit',[CampagnesController::class, 'edit'])->name('Campagnes.edit');
     Route::post('/campagnes/{id}/update' ,[CampagnesController::class, 'update'])->name('Campagnes.update');
@@ -59,6 +62,10 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
 Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->name('campagnes.finish');
 
 
+
+
+    Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
+    Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
 
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagnes.index');
     //=================================================================================================================
@@ -94,6 +101,10 @@ Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->nam
     //Route pour modifier une dimension
     Route::delete('/dimensions/{id}/destroy',[DimensionsController::class, 'destroy'])->name('Dimensions.destroy');
     //===================================================================================================================
+    //Voir les commandes 
+    Route::get('/commandes/admin',[CommandesController::class, 'showAdmin'])->name('Commandes.admin');
+    //modifier les ommandes
+    Route::POST('/commandes/{id}/update',[CommandesController::class, 'update'])->name('Commandes.udpate');
 });
 
 //Route pour les clients seulement
@@ -106,8 +117,7 @@ Route::middleware(['CheckRole:Client'])->group(function ()
     //Supprimer un client
     Route::delete('/comptes/{id}',[ComptesController::class, 'destroy'])->name('comptes.destroy');
 
-    //Voir les commandes 
-    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('commande.client');
+    
 });
 
 //Route pour admin et clients
@@ -124,6 +134,11 @@ Route::middleware(['CheckRole:Client,Admin'])->group(function ()
     Route::POST('/commande/{id}/store',[CommandesController::class, 'store'])->name('Commandes.store');
 
     Route::get('compte/pageClient', [ComptesController:: class,'showCommandes'])->name('comptes.pageClient');
+
+    //Voir les commandes 
+    Route::get('/commandes/client',[CommandesController::class, 'showClient'])->name('Commande.client');
+    //Supprimer une commmandes
+    Route::delete('/commandes/{id}',[CommandesController::class, 'destroy'])->name('Commandes.destroy');
 });
 
 //Route pour tous, incluant les non connecté
@@ -141,9 +156,8 @@ Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])-
 Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->name('Comptes.storeClient');
 Route::get('/comptes/createClient', [ComptesController::class, 'createClient'])->name('Comptes.createClient');
 
-
-
-
+//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
+//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('comptes.destroyAdmin');
 
 
 

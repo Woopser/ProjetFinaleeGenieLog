@@ -46,7 +46,12 @@
             </div>
         </div>
     </form>
-    </div>
+    <form method="post" class="d-flex justify-content-center marTop" action="{{ route('comptes.destroyAdmin', [$compte->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btRouge">Supprimer compte</button>
+    </form>
+</div>
 
     <script src="{{ asset('js/validationModifAdmin.js') }}"></script>
 @endsection

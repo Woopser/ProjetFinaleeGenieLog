@@ -6,7 +6,12 @@
 
 @foreach($campagnes as $campagne)
 <h1  style="text-align: center">{{$campagne->nom}}</h1>
-@endforeach
+<div class="row">
+  <div class="row"><h5>Date début paie: {{$campagne->dateDebFond}}  </h5></div>
+  <div class="row"><h5>Date fin paie: {{$campagne->dateRemiseFond}}  </h5></div>
+  <div class="row"><h5>Date fin campagne: {{$campagne->dateFin}}  </h5></div>
+</div>
+
 <div style="margin: 3%" class="row">
 @foreach ($articles as $article)
   <form method="POST" action="{{route('Commandes.store', [$article->id])}}" class="col-md-3 col-sm-12">
@@ -14,9 +19,9 @@
     @csrf
     <div class="card " >
         @if($article->image !=NULL)
-        <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top max" alt="{{$article->nom}}"/>
+        <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top" alt="{{$article->nom}}"/>
         @elseif($article->image == NULL)
-        <img src="{{asset('img/articles/notFound.png')}}" width="60%" height="60%" class="card-img-top max" alt="Image non-disponible"/>
+        <img src="{{asset('img/articles/notFound.png')}}" width="60%" height="60%" class="card-img-top" alt="Image non-disponible"/>
         @endif
         <div class="card-body">
           <h5 class="card-title">{{$article->nom}}</h5>
@@ -42,7 +47,7 @@
               <option class="dropdown-item" value="{{$i}}">{{$i}}</option>
               @endfor
             </select>
-            <input type="text" value="{{$article->id}}" style="visibility: hidden" name="article_id" >
+            <input type="text" value="{{$campagne->id}}" style="visibility: hidden" name="campagne_id" >
             <!--Pour plus tard, mettre un select pour la quantité-->
             <button type="submit" class="btn btBleu">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus whiteTxt" viewBox="0 0 16 16">
@@ -53,6 +58,7 @@
         </div>
       </div>
   </form>
+@endforeach
 @endforeach
 </div>
 

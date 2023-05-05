@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\CommandesController;
 use App\Models\Commande;
+use App\Models\Campagne;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use App\Models\Couleur;
@@ -34,19 +35,21 @@ class CommandesController extends Controller
      */
     public function store(Request $request, string $id)
     {
+        
         try{
+
             if(Auth::id() == null)
             {
-                return view('Comptes.showLoginForm'); 
+                return view('commandes.showLoginForm'); 
             }
             else 
             {
                 $commandes = new Commande($request->all());
                 $currentDate = date('Y-m-d');
-
+                
                 $count = 0;
-                Log::debug($commandes->article_id);
-                $commandos = Commande::where('compte_id', '=', Auth::id())->where('article_id','=',$commandes->article_id)->get();
+                Log::debug($id);
+                $commandos = Commande::where('compte_id', '=', Auth::id())->where('article_id','=',$id)->get();
                 
                 if(isset($commandos)){
                     foreach($commandos as $commando)
@@ -58,7 +61,7 @@ class CommandesController extends Controller
                 
                     Log::debug($count);
 
-                $articles = Article::where('id','=',$commandes->article_id)->get();
+                $articles = Article::where('id','=',$id)->get();
                 Log::debug($articles);
                 if(isset($articles))
                 {
@@ -67,7 +70,9 @@ class CommandesController extends Controller
                         Log::debug($request->nb_max);
                         if($count >= $article->nb_max)
                         {
-                            return view('Articles.index'); 
+                            Log::debug('ICI');
+                            return redirect()->back();
+                            
                         }
                         else
                         {
@@ -76,7 +81,10 @@ class CommandesController extends Controller
                             {
                             $commandes2 = new Commande();
                             $currentDate = date('Y-m-d');
-                            $commandes2->article_id = $request->article_id;
+                            $commandes2->article_id = $id;
+                            Log::debug($request->campagne_id);
+                            Log::debug('ici');
+                            $commandes2->campagne_id = $request->campagne_id;
                             $commandes2->couleur_id = $request->couleur_id;
                             $commandes2->dimension_id = $request->dimension_id;
                             $commandes2->compte_id = Auth::id();
@@ -86,7 +94,7 @@ class CommandesController extends Controller
                             $commandes2->save();
                             $count++;
                             }
-                            return view('Comptes.showLoginForm');
+                            return view('comptes.showLoginForm');
 
                         }
                     }
@@ -109,17 +117,18 @@ class CommandesController extends Controller
         //
     }
 
-    public function showClient(string $id)
+    public function showClient()
     {
-        $commandes = Commande::where('compte_id', '=', Auth::id())->get();
-        if(isset($commandes)){
-            foreach($commandes as $commande){
-                $articles = Article::where('id', '=',$commande->article_id)->get();
-                $couleurs = Couleur::where('id', '=',$commande->couleur_id)->get();
-                $dimensions = Dimension::where('id', '=',$commande->dimension_id)->get();
-            }
-        }
-        return view('Commandes.client', compact('articles','campagnes','couleurs','dimensions'));
+        $commandes = Commande::where('compte_id', '=', Auth::id())->with(['articles','dimensions','couleurs'])->get();
+        return view('Commandes.client', compact('commandes'));
+    }
+
+    
+    public function showAdmin()
+    {
+        $campagnes = Campagne::where('enCours',true)->first();
+        $commandes = Commande::where('campagne_id', '=', $campagnes->id)->with(['articles','dimensions','couleurs','comptes'])->get();
+        return view('Commandes.admin', compact('commandes'));
     }
 
     /**
@@ -135,7 +144,14 @@ class CommandesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $commandes=Commande::findOrFail($id);
+            $commandes->statu = $request->statu;
+            $commandes->save();
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
     }
 
     /**
@@ -143,6 +159,16 @@ class CommandesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $commandes=Commande::findOrFail($id);
+            $commandes->delete();
+
+            return redirect()->back()->with('message', "Suppresion de commande)" . $commandes->id . "réussi!");
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('Commande.client')->withErrors(['la suppression n\'a pas fonctionné']);
+        }
+        return redirect()->route('Commande.client');
     }
 }

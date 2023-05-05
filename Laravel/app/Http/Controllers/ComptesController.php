@@ -110,15 +110,24 @@ class ComptesController extends Controller
     {
         try{
             $comptes=Compte::findOrFail($id);
-            $comptes->delete();
-
-            return redirect()->route('comptes.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            //if($id == Auth::id()){
+                Log::debug("deconnecter");
+                Auth::logout();
+                $comptes->delete();
+                return redirect()->route('comptes.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            //}
+            //else if(Auth::user()->typeCompte == "SuperAdmin"){
+            //    return redirect()->route('Comptes.showAdmin')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            //}
+            //else{
+            //    return redirect()->route('Articles.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            //}
+                
         }
         catch(\Throwable $e){
             Log::debug($e);
-            return redirect()->route('comptes.index')->withErrors(['la suppression n\'a pas fonctionné']);
+            return redirect()->route('Articles.index')->withErrors(['la suppression n\'a pas fonctionné']);
         }
-        return redirect()->route('comptes.index');
     }
 
 
@@ -128,7 +137,13 @@ class ComptesController extends Controller
     {
         $reussi = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
         if($reussi){
-            return redirect()->route('Articles.index') ->with('message',"Connexion réussie");   
+            if(Auth::user()->typeCompte == "SuperAdmin"){
+                return redirect()->route('Comptes.showAdmin') ->with('message',"Connexion réussie"); 
+            }
+            else{
+                return redirect()->route('Articles.index') ->with('message',"Connexion réussie"); 
+            }
+              
         }
             else{
                     return redirect()->route('login')->withErrors(['Informations invalides']); 
@@ -196,7 +211,6 @@ class ComptesController extends Controller
         catch(Throwable $e){
             Log::debug($e);
         }
-        
     }
 
 
