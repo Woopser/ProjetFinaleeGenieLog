@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Campagne;
 use App\Models\Couleur;
+use App\Models\Commande;
 use App\Models\Dimension;
 use App\Http\Requests\ArticlesRequest;
 use Illuminate\Support\Facades\Log;
@@ -144,6 +145,27 @@ class ArticlesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $articles=Article::findOrFail($id);
+            $articles->dimensions()->detach();
+            $articles->couleurs()->detach();
+            
+            
+            $commandes = Commande::where('article_id','=',$articles->id)->get();
+            if(isset($commandes)){
+                foreach($commandes as $commande){
+                    $commande->delete();
+                }
+            }
+            $articles->commandes()->dissociate();
+            $articles->delete();
+
+            return redirect()->back()->with('message', "Suppresion de Articles)" . $articles->id . "réussi!");
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->back()->withErrors(['la suppression n\'a pas fonctionné']);
+        }
+        return redirect()->back();
     }
 }

@@ -23,7 +23,7 @@ class CouleursRequest extends FormRequest
     {
         return [
             'nom' => 'max:100|required',
-            'codeRGB' => 'max:6|min:6|required|regex:/^([0-9]?a?b?c?d?e?f?)+$/|unique:couleurs'
+            'codeRGB' => 'max:6|min:6|required|regex:/^([0-9]?a?b?c?d?e?f?A?B?C?D?E?F?)+$/|unique:couleurs'
         ];
     }
 

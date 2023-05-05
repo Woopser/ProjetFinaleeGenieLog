@@ -76,6 +76,7 @@ Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->nam
     Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
     Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
     Route::get('/articles/store',[ArticlesController::class,'show'])->name('Articles.show');
+    Route::delete('/articles/{id}/destroy',[ArticlesController::class, 'destroy'])->name('Articles.destroy');
     //==================================================================================================================
     //Couleur
     //Route créer une couleur

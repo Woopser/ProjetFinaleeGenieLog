@@ -18,4 +18,8 @@ class Article extends Model
     public function couleurs(){
         return $this->belongsToMany('App\Models\Couleur');
     }
+
+    public function commandes(){
+        return $this->belongsTo(Commande::class, 'article_id');
+    }
 }
