@@ -7,9 +7,9 @@
 @foreach($campagnes as $campagne)
 <h1  style="text-align: center">{{$campagne->nom}}</h1>
 <div class="row">
-  <div class="row"><h5>Date début paie: {{$campagne->dateDebFond}}  </h5></div>
-  <div class="row"><h5>Date fin paie: {{$campagne->dateRemiseFond}}  </h5></div>
-  <div class="row"><h5>Date fin campagne: {{$campagne->dateFin}}  </h5></div>
+  <div class="row"><h5>Date début paie: {{substr($campagne->dateDebFond,0,10)}}  </h5></div>
+  <div class="row"><h5>Date fin paie: {{substr($campagne->dateRemiseFond,0,10)}}  </h5></div>
+  <div class="row"><h5>Date fin campagne: {{substr($campagne->dateFin,0,10)}}  </h5></div>
 </div>
 
 <div style="margin: 3%" class="row">

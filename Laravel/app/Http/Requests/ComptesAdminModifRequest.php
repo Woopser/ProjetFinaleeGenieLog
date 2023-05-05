@@ -22,8 +22,8 @@ class ComptesAdminModifRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'prenom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
-            'nom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
+            'prenom' => 'required|min:3|max:100|regex:/^[a-zA-ZÀ-ÿ]+$/',
+            'nom' => 'required|min:3|max:100|regex:/^[a-zA-ZÀ-ÿ]+$/',
             'password' => 'required|min:8|max:20|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/'
         ];
     }
@@ -32,13 +32,13 @@ class ComptesAdminModifRequest extends FormRequest
         return[
             'prenom.required' => 'Votre prenom est requis.',  
             'prenom.min' => 'Votre prenom doit avoir un minimum de 3 caractères',  
-            'prenom.max' => 'Votre prenom doit avoir un maximum de 20 caractères ',
-            'prenom.regex' => "Votre prenom doit contenir entre 3 et 20 caractères et pas d'accents",
+            'prenom.max' => 'Votre prenom doit avoir un maximum de 100 caractères ',
+            'prenom.regex' => "Votre prenom doit contenir seulement des lettres et d'accents",
 
             'nom.required' => 'Votre nom est requis.',  
             'nom.min' => 'Votre nom doit avoir un minimum de 3 caractères',  
-            'nom.max' => 'Votre nom doit avoir un maximum de 20 caractères ',
-            'nom.regex' => "Votre nom doit contenir entre 3 et 20 caractères et pas d'accents",
+            'nom.max' => 'Votre nom doit avoir un maximum de 100 caractères ',
+            'nom.regex' => "Votre nom doit contenir seulement des lettres et d'accents",
 
             'password.required' => 'Votre mot de passe est requis.',  
             'password.min' => 'Votre mot de passe doit avoir un minimum de 8 caractères',  
