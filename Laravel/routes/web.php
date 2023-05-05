@@ -52,12 +52,12 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     
     //Route pour CRUD campagne
     
-    Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
-    Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
+    Route::post('/campagnes/edit',[CampagnesController::class, 'edit'])->name('Campagnes.edit');
+    Route::post('/campagnes/{id}/update' ,[CampagnesController::class, 'update'])->name('Campagnes.update');
+    
 
 
-
-    Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagne.index');
+    Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagnes.index');
     //=================================================================================================================
     //Article
     //Route pour ajouter un article

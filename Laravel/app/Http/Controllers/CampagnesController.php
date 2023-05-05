@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Campagne;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\CampagnesRequest;
 
 class CampagnesController extends Controller
@@ -61,19 +62,26 @@ class CampagnesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        $campagnes = Campagne::findOrFail($id);
-        return View('Campagnes.modifierCampagne', compact('campagnes'));
-    }
+        $campagnes = Campagne::where('enCours','=',true)->first();
+        Log::debug($campagnes->id);
+        $idd = $campagnes->id;
+        return redirect()->route('Campagnes.update', compact('campagnes', string($idd)));
+        
+    } 
+
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CampagnesRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
+
+        Log::debug("J'entre");
         try{
-            $campagnes = Compte::findOrFail($id);
+            $campagnes = Campagne::findOrFail($campagnes->id);
             $campagnes->nom = $request->nom;
             $campagnes->dateDeb = $request->dateDeb;
             $campagnes->dateDebFond = $request->dateDebFond;
