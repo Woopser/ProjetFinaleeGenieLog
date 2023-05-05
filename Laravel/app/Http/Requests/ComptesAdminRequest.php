@@ -24,7 +24,7 @@ class ComptesAdminRequest extends FormRequest
         return [
             'prenom' => 'required|min:3|max:100|regex:/[a-zA-ZÀ-ÿ]+/',
             'nom' => 'required|min:3|max:100|regex:/[a-zA-ZÀ-ÿ]+/',
-            'email' => 'required|max:100|regex:/^[a-zA-ZÀ-ÿ]+(\.[a-zA-Z]+)+\.([0-9]{2})@cegeptr.qc.ca$/|unique:comptes'
+            'email' => 'required|max:100|regex:/^([a-zA-ZÀ-ÿ]-?)+(\.([a-zA-Z]-?)+)+\.([0-9]{2})@cegeptr.qc.ca$/|unique:comptes'
         ];
     }
 

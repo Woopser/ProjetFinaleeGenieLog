@@ -57,23 +57,15 @@ targetNom.addEventListener('input', function(){
 let targetPassword;
 targetPassword = document.getElementById('password');
 targetPassword.addEventListener('input', function(){
-    let targetError = document.getElementById('errorPassword');
-    let re = /^([a-zA-ZÀ-ÿ]+-? ?)+$/;
+    let targetError = document.getElementById('errorPass');
+    let re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
     let match = re.test(targetPassword.value);
     if(targetPassword.value.length == 0){
         targetError.textContent = "Rentrez un mot de passe";
         targetPassword.classList.add('is-invalid');
     }
-    else if(targetPassword.value.length > 100){
-        targetError.textContent = "Le nom utiliser est trop long";
-        targetPassword.classList.add('is-invalid');
-    }
-    else if(targetPassword.value.length < 3){
-        targetError.textContent = "vous devez avoir un minimun de 3 caractère";
-        targetPassword.classList.add('is-invalid');
-    }
     else if(!match){
-        targetError.textContent = "Erreur caractère pas accepter";
+        targetError.textContent = 'Le mot de passe doit contenir au moins 8 caractères, incluant au moins une lettre, un chiffre et un symbole.';
         targetPassword.classList.add('is-invalid');
     }
     else if(targetPassword.value.length >= 3){

@@ -40,7 +40,7 @@
                 <a class="navTxt " href="{{ route('Campagnes.create')}}" name="boutonNav">Créer une campagne</a>
             </li>
             <li class="navLi">
-                <a class="navTxt " href="{{ route('Campagne.index')}}">CRUD Campagne</a>
+                <a class="navTxt " href="{{ route('Campagnes.index')}}">CRUD Campagne</a>
             </li>
             <li class="navLi">
                 <a class="navTxt " href="{{ route('Couleurs.create') }}" name="boutonNav">Créer une couleur</a>
@@ -88,6 +88,7 @@
         <div class="container-fluid navNoir" >
             <img src="{{asset('img/logoInfoBlanc.png')}}" alt="Logo" width="175" height="125" class="d-inline-block align-text-top">
             <a  class="navTxt" href="{{ route('Comptes.createAdmin')}}" name="boutonNav">Créer un compte Admin</a>
+            <a  class="navTxt" href="{{ route('Comptes.showAdmin')}}" name="boutonNav">Afficher admin</a>
             <form method="POST" class="navLi" action="{{route('logout')}}">
                 @csrf
                 <button class="navtxt btn btRouge"  id="bouttonAj" type="submit">Deconnexion</button>
