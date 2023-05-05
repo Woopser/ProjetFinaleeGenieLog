@@ -32,7 +32,7 @@
                             <form method="post" action="{{ route('comptes.destroy', [$compte->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Supprimer compte</button>
+                                <button type="submit" class="btn btRouge">Supprimer compte</button>
                             </form>
                         </div>
                     </div>         

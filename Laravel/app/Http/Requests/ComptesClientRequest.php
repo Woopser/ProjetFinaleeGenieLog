@@ -24,7 +24,7 @@ class ComptesClientRequest extends FormRequest
         return [
             'prenom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
             'nom' => 'required|min:3|max:20|regex:/^[a-zA-ZÀ-ÿ]+$/',
-            'email' => 'required|max:100',
+            'email' => 'required|max:100|unique:comptes',
             'password' => 'required|min:8|max:20|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/'
         ];
     }
@@ -43,6 +43,7 @@ class ComptesClientRequest extends FormRequest
     
             'email.required' => 'Votre adresse courriel est requis.',  
             'email.max' => 'Votre adresse courriel doit avoir un maximum de 100 caractères', 
+            'email.unique' => 'Cette adresse email est déjà utilisée',
 
             'password.required' => 'Votre mot de passe est requis.',  
             'password.min' => 'Votre mot de passe doit avoir un minimum de 8 caractères',  

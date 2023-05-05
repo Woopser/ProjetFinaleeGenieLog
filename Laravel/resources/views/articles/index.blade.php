@@ -14,9 +14,9 @@
     @csrf
     <div class="card " >
         @if($article->image !=NULL)
-        <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top max" alt="{{$article->nom}}"/>
+        <img src="{{asset('img/articles/' . $article->image)}}" width="60%" height="60%" class="card-img-top" alt="{{$article->nom}}"/>
         @elseif($article->image == NULL)
-        <img src="{{asset('img/articles/notFound.png')}}" width="60%" height="60%" class="card-img-top max" alt="Image non-disponible"/>
+        <img src="{{asset('img/articles/notFound.png')}}" width="60%" height="60%" class="card-img-top" alt="Image non-disponible"/>
         @endif
         <div class="card-body">
           <h5 class="card-title">{{$article->nom}}</h5>
