@@ -59,7 +59,7 @@ let targetEmail;
 targetEmail = document.getElementById('emailCompte');
 targetEmail.addEventListener('input', function(){
     let targetError = document.getElementById('errorEmail');
-    let re = /^([a-zA-ZÀ-ÿ]+\.)+[a-zA-ZÀ-ÿ]+\.[0-9]{2}@cegeptr\.qc\.ca$/;
+    let re = /^([a-zA-ZÀ-ÿ]-?)+(\.([a-zA-Z]-?)+)+\.([0-9]{2})@cegeptr\.qc\.ca$/;
     let match = re.test(targetEmail.value);
     if(targetEmail.value.length == 0){
         targetError.textContent = "Rentrez un email du cegep";

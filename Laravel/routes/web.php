@@ -34,29 +34,27 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
     Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
     //liste admin
     Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+    //supprimer admin
+    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
 });
 
 //Route pour admins
 Route::middleware(['CheckRole:Admin'])->group(function () 
 {
+    //comptes
     //Route pour modification d'admin
     Route::get('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/updateAdmin',[ComptesController::class, 'updateAdmin'])->name('Comptes.updateAdmin');
+    //route pour delete admin
+    
     //=================================================================================================================
     //Routes pour creation de campagnes
-    
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');
     Route::post('/campagne/store',[CampagnesController::class, 'store'])->name('campagnes.store');
-    
-    
     //Route pour CRUD campagne
-    
     Route::get('/campagnes/{id}/edit',[CampagnesController::class, 'edit'])->name('campagnes.edit');
     Route::put('/campagnes/{id}' ,[CampagnesController::class, 'update'])->name('campagnes.update');
-
-
-
     Route::get('/campagnes/index',[CampagnesController::class,'index'])->name('Campagnes.index');
     //=================================================================================================================
     //Article
@@ -149,9 +147,8 @@ Route::post('/comptes/storeClient', [ComptesController::class, 'storeClient'])->
 
 
 
-
-
-
+//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroyAdminSuper');
+//Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('comptes.destroyAdmin');
 
 
 
