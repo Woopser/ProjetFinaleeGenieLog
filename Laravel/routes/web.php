@@ -34,6 +34,12 @@ Route::middleware(['CheckRole:SuperAdmin'])->group(function ()
     Route::post('/comptes/storeAdmin',[ComptesController::class, 'storeAdmin'])->name('Comptes.storeAdmin');
     //liste admin
     Route::get('/comptes/showAdmin' ,[ComptesController::class, 'showAdmin'])->name('Comptes.showAdmin');
+    
+});
+
+//Route pour admins et super admin
+Route::middleware(['CheckRole:Admin,SuperAdmin'])->group(function () 
+{
     //supprimer admin
     Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroy');
 });
@@ -46,8 +52,6 @@ Route::middleware(['CheckRole:Admin'])->group(function ()
     Route::get('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/editAdmin',[ComptesController::class, 'editAdmin'])->name('Comptes.editAdmin');
     Route::post('/comptes/updateAdmin',[ComptesController::class, 'updateAdmin'])->name('Comptes.updateAdmin');
-    //route pour delete admin
-    Route::delete('/comptes/{id}/destoy',[ComptesController::class, 'destroy'])->name('Comptes.destroy');
     //=================================================================================================================
     //Routes pour creation de campagnes
     Route::get('/campagnes/creation',[CampagnesController::class, 'create'])->name('Campagnes.create');

@@ -18,5 +18,7 @@ class Compte extends Authenticable
         'remember_token'
     ];
 
-    
+    public function commandes(){
+        return $this->belongsTo(Commande::class, 'compte_id');
+    }
 }

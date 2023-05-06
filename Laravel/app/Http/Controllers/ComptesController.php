@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Compte;
+use App\Models\Commande;
 use App\Http\Requests\ComptesAdminRequest;
 use App\Http\Requests\ComptesAdminModifRequest;
 use App\Http\Requests\ComptesClientRequest;
@@ -110,18 +111,28 @@ class ComptesController extends Controller
     {
         try{
             $comptes=Compte::findOrFail($id);
-            //if($id == Auth::id()){
+            $commandes = Commande::where('compte_id','=',$comptes->id)->get();
+            if(isset($commandes)){
+                foreach($commandes as $commande){
+                    $commande->delete();
+                }
+            }
+            $comptes->commandes()->dissociate();
+
+
+            if($id == Auth::id()){
                 Log::debug("deconnecter");
                 Auth::logout();
                 $comptes->delete();
                 return redirect()->route('comptes.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
-            //}
-            //else if(Auth::user()->typeCompte == "SuperAdmin"){
-            //    return redirect()->route('Comptes.showAdmin')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
-            //}
-            //else{
-            //    return redirect()->route('Articles.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
-            //}
+            }
+            else if(Auth::user()->typeCompte == "SuperAdmin"){
+                $comptes->delete();
+                return redirect()->route('Comptes.showAdmin')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            }
+            else{
+                return redirect()->route('Articles.index')->with('message', "Suppresion du client)" . $comptes->prenom . "réussi!");
+            }
                 
         }
         catch(\Throwable $e){
