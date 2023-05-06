@@ -19,7 +19,7 @@ targetNom.addEventListener('input',function(){
 //Vérification codeRGB
 targetCodeRGB.addEventListener('input', function(){
     targetError = document.getElementById('errorCodeRGB');
-    let re = /^([0-9]?a?b?c?d?e?f?)+$/;
+    let re = /^([0-9]?a?b?c?d?e?f?A?B?C?D?E?F?)+$/;
     let match = re.test(targetCodeRGB.value);
     if(targetCodeRGB.value.length > 6){
         targetError.textContent = "Le code hexadecimal doit être de 6 caractère";

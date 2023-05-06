@@ -75,6 +75,8 @@ Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->nam
     Route::get('/articles/create',[ArticlesController::class, 'create'])->name('Articles.create');
     Route::post('/articles/store',[ArticlesController::class, 'store'])->name('Article.store');
     Route::post('/articles/superStore',[ArticlesController::class,'superStore'])->name('Article.superStore');
+    Route::get('/articles/store',[ArticlesController::class,'show'])->name('Articles.show');
+    Route::delete('/articles/{id}/destroy',[ArticlesController::class, 'destroy'])->name('Articles.destroy');
     //==================================================================================================================
     //Couleur
     //Route créer une couleur
@@ -104,8 +106,9 @@ Route::get('campagnes/{id}/finish', [CampagnesController::class, 'finish'])->nam
     //===================================================================================================================
     //Voir les commandes 
     Route::get('/commandes/admin',[CommandesController::class, 'showAdmin'])->name('Commandes.admin');
+    Route::post('/commandes/admin',[CommandesController::class, 'showAdmin'])->name('Commandes.admin');
     //modifier les ommandes
-    Route::POST('/commandes/{id}/update',[CommandesController::class, 'update'])->name('Commandes.udpate');
+    Route::post('/commandes/{id}/update',[CommandesController::class, 'update'])->name('Commandes.update');
 });
 
 //Route pour les clients seulement

@@ -146,8 +146,11 @@ class CommandesController extends Controller
     {
         try{
             $commandes=Commande::findOrFail($id);
+            Log::debug($request->statu);
             $commandes->statu = $request->statu;
+            Log::debug("ici");
             $commandes->save();
+            return redirect()->back();
         }
         catch(\Throwable $e){
             Log::debug($e);
