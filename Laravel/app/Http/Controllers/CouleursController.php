@@ -33,7 +33,7 @@ class CouleursController extends Controller
     {
         $couleur = new Couleur($request->all());
         $couleur->save();
-        return redirect()->route('Articles.index');
+        return redirect()->back();
     }
 
     /**

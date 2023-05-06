@@ -31,7 +31,13 @@ class CampagnesController extends Controller
      */
     public function create()
     {
-        return view('campagnes.create');
+        $campagne = Campagne::where("enCours", "=", true)->first();
+        if(isset($campagne)){ 
+            return redirect()->route('Campagnes.edit');
+        }
+        else{
+            return view('campagnes.create');
+        }
     }
 
     /**
@@ -48,7 +54,7 @@ class CampagnesController extends Controller
             Log::debug($e);
 
         }
-        return redirect()->route('Campagnes.index');
+        return redirect()->route('Articles.create');
     }
 
     /**
@@ -65,8 +71,14 @@ class CampagnesController extends Controller
     public function edit()
     {
         $campagnes = Campagne::where('enCours','=',true)->first();
-        Log::debug($campagnes->id);
-        return view('campagnes.modifierCampagne',compact('campagnes'));
+        $campagne = Campagne::where("enCours", "=", true)->first();
+        if(isset($campagne)){
+            return view('campagnes.modifierCampagne',compact('campagnes'));
+        }
+        else{
+            return view('campagnes.create');
+        }
+        
         
     } 
 

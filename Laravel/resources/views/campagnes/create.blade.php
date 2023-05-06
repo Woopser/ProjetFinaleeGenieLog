@@ -32,7 +32,7 @@
         <div class="mb-3 form-group row">
             <label  class="col-form-label col-sm-4 textForm " for="dateDeb">Date début campagne :</label>
             <div class="col-sm-8">
-                <input type="date" class="form-control" id="dateDeb" name="dateDebut" value="{{ old('dateDeb')}}">
+                <input type="date" class="form-control" id="dateDeb" name="dateDebut" value="{{ substr(old('dateDeb'),0,10)}}">
                 <p id="dateDebErr" class="erreur"></p>
             </div>
             

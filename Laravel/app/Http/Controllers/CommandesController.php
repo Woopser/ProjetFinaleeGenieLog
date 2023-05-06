@@ -54,11 +54,10 @@ class CommandesController extends Controller
                 if(isset($commandos)){
                     foreach($commandos as $commando)
                     {
-                        Log::debug('dans le foreach');
                         $count = $count +1;
                     }
                 }
-                
+                    
                     Log::debug($count);
 
                 $articles = Article::where('id','=',$id)->get();
@@ -68,7 +67,7 @@ class CommandesController extends Controller
                     foreach($articles as $article)
                     {
                         Log::debug($request->nb_max);
-                        if($count >= $article->nb_max)
+                        if(($count + $request->nb_max) >= $article->nb_max)
                         {
                             Log::debug('ICI');
                             return redirect()->back();
@@ -79,22 +78,22 @@ class CommandesController extends Controller
                             Log::debug($request->nb_max);
                             for($i = 0; $i < $request->nb_max; $i++)
                             {
-                            $commandes2 = new Commande();
-                            $currentDate = date('Y-m-d');
-                            $commandes2->article_id = $id;
-                            Log::debug($request->campagne_id);
-                            Log::debug('ici');
-                            $commandes2->campagne_id = $request->campagne_id;
-                            $commandes2->couleur_id = $request->couleur_id;
-                            $commandes2->dimension_id = $request->dimension_id;
-                            $commandes2->compte_id = Auth::id();
-                            $commandes2->compte_id_modification = Auth::id();
-                            $commandes2->dateCommande = $currentDate;
-                            $commandes2->statu = 'Commandé';
-                            $commandes2->save();
-                            $count++;
+                                $commandes2 = new Commande();
+                                $currentDate = date('Y-m-d');
+                                $commandes2->article_id = $id;
+                                Log::debug($request->campagne_id);
+                                Log::debug('ici');
+                                $commandes2->campagne_id = $request->campagne_id;
+                                $commandes2->couleur_id = $request->couleur_id;
+                                $commandes2->dimension_id = $request->dimension_id;
+                                $commandes2->compte_id = Auth::id();
+                                $commandes2->compte_id_modification = Auth::id();
+                                $commandes2->dateCommande = $currentDate;
+                                $commandes2->statu = 'Commandé';
+                                $commandes2->save();
+                                $count++;
                             }
-                            return view('comptes.showLoginForm');
+                            return redirect()->back();
 
                         }
                     }
