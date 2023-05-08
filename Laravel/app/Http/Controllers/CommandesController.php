@@ -118,16 +118,23 @@ class CommandesController extends Controller
 
     public function showClient()
     {
-        $commandes = Commande::where('compte_id', '=', Auth::id())->with(['articles','dimensions','couleurs'])->get();
+        $campagnes = Campagne::where('enCours',true)->first();
+        $commandes = Commande::where('campagne_id', '=', $campagnes->id)->where('compte_id', '=', Auth::id())->with(['articles','dimensions','couleurs'])->get();
         return view('Commandes.client', compact('commandes'));
     }
 
     
     public function showAdmin()
     {
-        $campagnes = Campagne::where('enCours',true)->first();
-        $commandes = Commande::where('campagne_id', '=', $campagnes->id)->with(['articles','dimensions','couleurs','comptes'])->get();
-        return view('Commandes.admin', compact('commandes'));
+        try{
+            $campagnes = Campagne::where('enCours',true)->first();
+            $commandes = Commande::where('campagne_id', '=', $campagnes->id)->with(['articles','dimensions','couleurs','comptes'])->get();
+            return view('Commandes.admin', compact('commandes'));
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
+        return view('campagnes.create')->withErrors(['Il n\'y a pas de campagnes active.']);
     }
 
     /**
