@@ -98,7 +98,7 @@ class CampagnesController extends Controller
             $campagnes->dateRemiseFond = $request->dateRemiseFond;
             $campagnes->dateFin = $request->dateFin;
             $campagnes->save();
-            return redirect()->route('Campagnes.index')->with('message', "Modification de la campagne " . $campagnes->nom . "réussi!");
+            return redirect()->route('Articles.index')->with('message', "Modification de la campagne " . $campagnes->nom . "réussi!");
             }
                 catch(\Throwable $e){
               

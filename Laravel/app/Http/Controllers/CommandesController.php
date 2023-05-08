@@ -67,7 +67,7 @@ class CommandesController extends Controller
                     foreach($articles as $article)
                     {
                         Log::debug($request->nb_max);
-                        if(($count + $request->nb_max) >= $article->nb_max)
+                        if(($count + $request->nb_max) > $article->nb_max)
                         {
                             Log::debug('ICI');
                             return redirect()->back();

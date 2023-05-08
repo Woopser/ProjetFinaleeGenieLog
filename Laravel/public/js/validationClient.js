@@ -37,7 +37,7 @@
     let errorEmail = document.getElementById('errorEmail');
     emailInput.addEventListener('input', () => {
         let email = emailInput.value.trim();
-        if (email.length < 3 || email.length > 20) {
+        if (email.length < 3 || email.length > 100) {
             errorEmail.textContent = " L'adresse courriel peut contenir un maximum de 100 caractères";
             emailInput.classList.add('is-invalid');
         } else {
@@ -55,9 +55,10 @@
         let motDePasse = motDePasseInput.value;
         let isValidMotDePasse = motDePasseRegex.test(motDePasse);
         if(isValidMotDePasse){
-            errorMotDePasse.textContent = 'Mot de passe Valide';
-            motDePasseInput.classList.add('is-invalid');
+            errorMotDePasse.textContent = '';
+            motDePasseInput.classList.remove('is-invalid');
         } else{
             errorMotDePasse.textContent ='Le mot de passe doit contenir au moins 8 caractères, incluant au moins une lettre, un chiffre et un symbole.';
+            motDePasseInput.classList.add('is-invalid');
         }
     });
